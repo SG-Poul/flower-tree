@@ -15,11 +15,14 @@ class ProductsSearch extends Products
     /**
      * @inheritdoc
      */
+    public $categoryName;
+
     public function rules()
     {
         return [
             [['id', 'categoryId', 'price'], 'integer'],
             [['name'], 'safe'],
+            [['categoryName'], 'safe']
         ];
     }
 
@@ -57,6 +60,32 @@ class ProductsSearch extends Products
             return $dataProvider;
         }
 
+        $dataProvider->setSort([
+            'attributes' => [
+                'id' => [
+                    'asc' => ['products.id' => SORT_ASC],
+                    'desc' => ['products.id' => SORT_DESC],
+                    'label' => 'Products ID',
+                    'default' => SORT_ASC
+                ],
+                'name' => [
+                    'asc' => ['products.name' => SORT_ASC],
+                    'desc' => ['products.name' => SORT_DESC],
+                    'label' => 'Products Name',
+                ],
+                'categoryName' => [
+                    'asc' => ['category.name' => SORT_ASC],
+                    'desc' => ['category.name' => SORT_DESC],
+                    'label' => 'Country Name',
+                ],
+                'price' => [
+                    'asc' => ['products.price' => SORT_ASC],
+                    'desc' => ['products.price' => SORT_DESC],
+                    'label' => 'Products Price in UAH',
+                ],
+            ]
+        ]);
+
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
@@ -65,6 +94,8 @@ class ProductsSearch extends Products
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);
+
+        $query->joinWith(['category']);
 
         return $dataProvider;
     }

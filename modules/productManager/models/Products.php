@@ -48,6 +48,7 @@ class Products extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'categoryId' => 'Category ID',
+            'categoryName' => 'Category',
             'price' => 'Price',
         ];
     }
@@ -66,5 +67,10 @@ class Products extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'categoryId']);
+    }
+
+    public function getCategoryName()
+    {
+        return $this->category->name;
     }
 }
