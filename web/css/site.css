@@ -113,3 +113,7 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.modal-dialog {width:600px;}
+
+.thumbnail {margin-bottom:6px;}

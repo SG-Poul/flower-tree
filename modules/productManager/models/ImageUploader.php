@@ -32,4 +32,20 @@ class ImageUploader extends Model
             return false;
         }
     }
+
+    public function getProductImages($productId) //TODO Update for images deleted
+    {
+        $images = [];
+        $imageCount = 1;
+
+        while (file_exists('assets/products/id-' . $productId . '-' . $imageCount . '.png')) {
+            $images[] = '../../assets/products/id-' . $productId . '-' . $imageCount . '.png';
+            $imageCount++;
+        }
+
+        if ($imageCount == 1) {
+            $images[] = '../../assets/products/no-image.png';
+        }
+        return $images;
+    }
 }

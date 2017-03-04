@@ -104,13 +104,16 @@ class ProductsController extends Controller
             $categories[$item['id']] = $item['name'];
         }
 
+        $images = $uploadModel->getProductImages($id);
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
                 'uploadModel' => $uploadModel,
-                'categories' => $categories
+                'categories' => $categories,
+                'images'=> $images,
             ]);
         }
     }

@@ -14,7 +14,8 @@ $this->title = 'Update: ' . $model->name . ' (id: ' . $model->id . ')';
     <?= $this->render('_formEdit', [
         'model' => $model,
         'uploadModel' => $uploadModel,
-        'categories' => $categories
+        'categories' => $categories,
+        'images'=> $images,
     ]) ?>
 
 </div>
