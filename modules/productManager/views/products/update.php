@@ -5,17 +5,16 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\productManager\models\Products */
 
-$this->title = 'Update Products: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Update: ' . $model->name . ' (id: ' . $model->id . ')';
 ?>
 <div class="products-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2><?= Html::encode($this->title) ?></h2>
 
-    <?= $this->render('_form', [
+    <?= $this->render('_formEdit', [
         'model' => $model,
+        'uploadModel' => $uploadModel,
+        'categories' => $categories
     ]) ?>
 
 </div>

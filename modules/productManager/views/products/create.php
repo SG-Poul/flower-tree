@@ -2,13 +2,10 @@
 
 use yii\helpers\Html;
 
-
 /* @var $this yii\web\View */
 /* @var $model app\modules\productManager\models\Products */
 
-$this->title = 'Create Products';
-$this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Add new product';
 ?>
 <div class="products-create">
 
@@ -16,6 +13,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'uploadModel' => $uploadModel,
+        'categories' => $categories
     ]) ?>
 
 </div>

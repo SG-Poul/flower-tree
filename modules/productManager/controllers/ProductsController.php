@@ -4,7 +4,10 @@ namespace app\modules\productManager\controllers;
 
 use Yii;
 use app\modules\productManager\models\Products;
+use app\modules\productManager\models\Category;
 use app\modules\productManager\models\ProductsSearch;
+use app\modules\productManager\models\ImageUploader;
+use yii\web\UploadedFile;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -64,12 +67,23 @@ class ProductsController extends Controller
     public function actionCreate()
     {
         $model = new Products();
+        $uploadModel = new ImageUploader();
+
+        $categories = [];
+        foreach (Category::find()->asArray()->indexBy('id')->all() as $item) {
+            $categories[$item['id']] = $item['name'];
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $uploadModel->uploadedFiles = UploadedFile::getInstances($uploadModel, 'uploadedFiles');
+            if ($uploadModel->upload($model->id)) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'uploadModel' => $uploadModel,
+                'categories' => $categories
             ]);
         }
     }
@@ -83,12 +97,20 @@ class ProductsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $uploadModel = new ImageUploader();
+
+        $categories = [];
+        foreach (Category::find()->asArray()->indexBy('id')->all() as $item) {
+            $categories[$item['id']] = $item['name'];
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'uploadModel' => $uploadModel,
+                'categories' => $categories
             ]);
         }
     }

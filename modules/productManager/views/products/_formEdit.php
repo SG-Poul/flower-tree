@@ -17,7 +17,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($uploadModel, 'uploadedFiles[]')->fileInput(['multiple' => true])->label('Images') ?>
+    <h2>Images</h2>
+
+
+
+    <?= $form->field($uploadModel, 'uploadedFiles[]')->fileInput(['multiple' => true])->label('Add new') ?>
 
     <?= $form->field($model, 'price')->textInput() ?>
 
