@@ -48,4 +48,19 @@ class ImageUploader extends Model
         }
         return $images;
     }
+
+    public function deleteImage($imageName) // TODO Check if secure
+    {
+        unlink('assets/products/' . $imageName);
+        $count = explode("-", $imageName);
+        $productId = $count[1];
+        $imageCount = explode(".", $count[2]);
+        $imageCount = $imageCount[0];
+        $imageCount++;
+        while (file_exists('assets/products/id-' . $productId . '-' . $imageCount . '.png')) {
+            $newName = strval($imageCount - 1);
+            rename('assets/products/id-' . $productId . '-' . $imageCount . '.png', 'assets/products/id-' . $productId . '-' . $newName . '.png');
+            $imageCount++;
+        }
+    }
 }

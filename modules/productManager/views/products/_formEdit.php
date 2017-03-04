@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
                 $imgCount++;
                 ?>
                 <div class="col-lg-3 col-sm-4 col-xs-6">
-                    <a title="Image <?= $imgCount ?>" href="#">
+                    <a title="<?= 'id-' . $model->id . '-' . $imgCount . '.png'?>" href="#">
                         <img class="thumbnail img-responsive" src="<?= $img ?>">
                     </a>
                 </div>
@@ -48,6 +48,8 @@ use yii\widgets\ActiveForm;
 
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-success">Choose as main</button>
+                    <button class="btn btn-danger delete-image">Delete</button>
                     <button class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -56,15 +58,20 @@ use yii\widgets\ActiveForm;
 
     <?php
         $imageScript = <<< JS
-        function foo() {
-            return $var; //можно использовать переменные
-        }
         $('.thumbnail').click(function(){
             $('.modal-body').empty();
   	        var title = $(this).parent('a').attr("title");
   	        $('.modal-title').html(title);
   	        $($(this).parents('div').html()).appendTo('.modal-body');
   	        $('#myModal').modal({show:true});
+        });
+        $('.delete-image').click(function(event){
+            event.preventDefault();
+  	        var image = $('.modal-title').html();
+  	        $.post( "deleteimg", { imageName : image })
+              .done(function( data ) {
+                location.reload();
+              });
         });
 JS;
         $this->registerJs($imageScript, yii\web\View::POS_READY);

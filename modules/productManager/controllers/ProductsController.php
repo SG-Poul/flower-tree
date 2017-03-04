@@ -77,7 +77,7 @@ class ProductsController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $uploadModel->uploadedFiles = UploadedFile::getInstances($uploadModel, 'uploadedFiles');
             if ($uploadModel->upload($model->id)) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['update', 'id' => $model->id]);
             }
         } else {
             return $this->render('create', [
@@ -107,7 +107,10 @@ class ProductsController extends Controller
         $images = $uploadModel->getProductImages($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $uploadModel->uploadedFiles = UploadedFile::getInstances($uploadModel, 'uploadedFiles');
+            if ($uploadModel->upload($model->id)) {
+                return $this->redirect(['update', 'id' => $model->id]);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -145,5 +148,12 @@ class ProductsController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionDeleteimg()
+    {
+        $imageName = Yii::$app->request->post('imageName');
+        $model = new ImageUploader();
+        $model->deleteImage($imageName);
     }
 }
