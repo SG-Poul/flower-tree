@@ -73,4 +73,14 @@ class Products extends \yii\db\ActiveRecord
     {
         return $this->category->name;
     }
+
+    public function getMainPhoto()
+    {
+        if (file_exists('assets/products/id-' . $this->id . '-1.png')) {
+
+            return '<img class="thumbnail img-responsive" src="../assets/products/id-' . $this->id . '-1.png">';
+        } else {
+            return '<img class="thumbnail img-responsive" src="../assets/products/no-image.png">';
+        }
+    }
 }

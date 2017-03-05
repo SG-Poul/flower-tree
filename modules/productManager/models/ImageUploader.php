@@ -63,4 +63,25 @@ class ImageUploader extends Model
             $imageCount++;
         }
     }
+
+    public function deleteAllImages($id) // TODO Check if secure
+    {
+        $imageCount = 1;
+        while (file_exists('assets/products/id-' . $id . '-' . $imageCount . '.png')) {
+            unlink('assets/products/id-' . $id . '-' . $imageCount . '.png');
+            $imageCount++;
+        }
+    }
+
+    public function setMain($imageName) // TODO Check if secure
+    {
+        $count = explode("-", $imageName);
+        $productId = $count[1];
+        $imageCount = explode(".", $count[2]);
+        $imageCount = $imageCount[0];
+
+        rename('assets/products/id-' . $productId . '-1.png', 'assets/products/id-' . $productId . '-tmp.png');
+        rename('assets/products/id-' . $productId . '-' . $imageCount . '.png', 'assets/products/id-' . $productId . '-1.png');
+        rename('assets/products/id-' . $productId . '-tmp.png', 'assets/products/id-' . $productId . '-' . $imageCount . '.png');
+    }
 }

@@ -19,14 +19,19 @@ $this->title = 'Products';
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
+                'label' => 'Photo',
+                'attribute' => 'mainPhoto',
+                'format' => 'raw',
+                'contentOptions' => ['style' => 'max-width: 100px;']
+            ],
+            'name',
+            [
                 'label' => 'ID',
                 'attribute' => 'id',
                 'format' => 'raw',
                 'contentOptions' => ['style' => 'max-width: 30px;']
             ],
-            'name',
             'categoryName',
-            'price',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

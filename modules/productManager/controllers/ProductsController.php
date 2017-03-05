@@ -130,6 +130,8 @@ class ProductsController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        $model = new ImageUploader();
+        $model->deleteAllImages($id);
 
         return $this->redirect(['index']);
     }
@@ -155,5 +157,12 @@ class ProductsController extends Controller
         $imageName = Yii::$app->request->post('imageName');
         $model = new ImageUploader();
         $model->deleteImage($imageName);
+    }
+
+    public function actionSetimg()
+    {
+        $imageName = Yii::$app->request->post('imageName');
+        $model = new ImageUploader();
+        $model->setMain($imageName);
     }
 }

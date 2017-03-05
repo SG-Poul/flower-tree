@@ -48,7 +48,7 @@ use yii\widgets\ActiveForm;
 
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success">Choose as main</button>
+                    <button class="btn btn-success main-image">Choose as main</button>
                     <button class="btn btn-danger delete-image">Delete</button>
                     <button class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
@@ -69,6 +69,14 @@ use yii\widgets\ActiveForm;
             event.preventDefault();
   	        var image = $('.modal-title').html();
   	        $.post( "deleteimg", { imageName : image })
+              .done(function( data ) {
+                location.reload();
+              });
+        });
+        $('.main-image').click(function(event){
+            event.preventDefault();
+  	        var image = $('.modal-title').html();
+  	        $.post( "setimg", { imageName : image })
               .done(function( data ) {
                 location.reload();
               });
