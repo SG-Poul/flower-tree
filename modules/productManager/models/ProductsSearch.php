@@ -73,11 +73,6 @@ class ProductsSearch extends Products
                     'desc' => ['products.name' => SORT_DESC],
                     'label' => 'Products Name',
                 ],
-                'categoryName' => [
-                    'asc' => ['category.name' => SORT_ASC],
-                    'desc' => ['category.name' => SORT_DESC],
-                    'label' => 'Country Name',
-                ],
                 'price' => [
                     'asc' => ['products.price' => SORT_ASC],
                     'desc' => ['products.price' => SORT_DESC],
@@ -95,7 +90,7 @@ class ProductsSearch extends Products
 
         $query->andFilterWhere(['like', 'name', $this->name]);
 
-        $query->joinWith(['category']);
+//        $query->joinWith(['category']);
 
         return $dataProvider;
     }

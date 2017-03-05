@@ -2,20 +2,27 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\productManager\models\ProductsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Products';
+Yii::setAlias('@category', '/productManager/category');
 ?>
 <div class="products-index">
+    <div class="form-group">
+        <?= Html::a('Add new Products', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Edit categories', ['@category'], ['class' => 'btn btn-success']) ?>
+    </div>
+
     <p>
-        <?= Html::a('Add new Products', ['create'], ['class' => 'btn btn-success btn-block']) ?>
+        <?= $this->render('_search', ['model' => $searchModel, 'categories' => $categories]) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+//        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [

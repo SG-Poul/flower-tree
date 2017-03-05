@@ -8,24 +8,26 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="products-search">
+<div class="products-search form-group">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
+        'class' => 'row',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <div class="table-responsive">
+        <table class="table">
+            <tr>
+                <td><?= $form->field($model, 'id') ?></td>
+                <td><?= $form->field($model, 'name') ?></td>
+                <td><?= $form->field($model, 'categoryId')->dropDownList($categories,['prompt' =>'please select']) ?></td>
+            </tr>
+        </table>
+        <?= Html::submitButton('Search', ['class' => 'btn btn-primary btn-block']) ?>
 
-    <?= $form->field($model, 'name') ?>
-
-    <?= $form->field($model, 'categoryId') ?>
-
-    <?= $form->field($model, 'price') ?>
-
+    </div>
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -39,12 +39,12 @@ class ImageUploader extends Model
         $imageCount = 1;
 
         while (file_exists('assets/products/id-' . $productId . '-' . $imageCount . '.png')) {
-            $images[] = '../../assets/products/id-' . $productId . '-' . $imageCount . '.png';
+            $images[] = 'id-' . $productId . '-' . $imageCount . '.png';
             $imageCount++;
         }
 
         if ($imageCount == 1) {
-            $images[] = '../../assets/products/no-image.png';
+            $images[] = 'no-image.png';
         }
         return $images;
     }

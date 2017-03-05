@@ -31,7 +31,7 @@ use yii\widgets\ActiveForm;
                 ?>
                 <div class="col-lg-3 col-sm-4 col-xs-6">
                     <a title="<?= 'id-' . $model->id . '-' . $imgCount . '.png'?>" href="#">
-                        <img class="thumbnail img-responsive" src="<?= $img ?>">
+                        <?= Html::img('@web/assets/products/' . $img, ['class' => 'thumbnail img-responsive']); ?>
                     </a>
                 </div>
             <?php } ?>

@@ -41,9 +41,18 @@ class ProductsController extends Controller
         $searchModel = new ProductsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $categories = [];
+        $categoriesName = [];
+        foreach (Category::find()->asArray()->indexBy('id')->all() as $item) {
+            $categories[$item['id']] = $item['name'];
+            $categoriesName[$item['name']] = $item['name'];
+        }
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'categories' => $categories,
+            'categoriesName' => $categoriesName,
         ]);
     }
 

@@ -3,6 +3,7 @@
 namespace app\modules\productManager\models;
 
 use Yii;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "products".
@@ -78,9 +79,9 @@ class Products extends \yii\db\ActiveRecord
     {
         if (file_exists('assets/products/id-' . $this->id . '-1.png')) {
 
-            return '<img class="thumbnail img-responsive" src="../assets/products/id-' . $this->id . '-1.png">';
+            return Html::img('@web/assets/products/id-' . $this->id . '-1.png', ['class' => 'thumbnail img-responsive']);
         } else {
-            return '<img class="thumbnail img-responsive" src="../assets/products/no-image.png">';
+            return Html::img('@web/assets/products/no-image.png', ['class' => 'thumbnail img-responsive']);
         }
     }
 }
