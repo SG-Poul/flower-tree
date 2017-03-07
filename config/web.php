@@ -6,6 +6,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    /*'language' => 'ru',*/
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -15,8 +16,9 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+            'identityClass' => 'mdm\admin\models\User',
+            'loginUrl' => ['rbac/user/login'],
+            /*'enableAutoLogin' => true,*/
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -48,14 +50,43 @@ $config = [
                 '<controller:\w+>/<action:\w+>'=>'<controller>/<action>'
             ],
         ],
-
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager'
+        ]
     ],
     'modules' => [
         'productManager' => [
             'class' => 'app\modules\productManager\ProductManager',
+        ],
+        'admin' => [
+            'class' => 'app\modules\admin\Admin',
+        ],
+        'rbac' => [
+            'class' => 'mdm\admin\Module',
+            'controllerMap' => [
+                'assignment' => [
+                    'class' => 'mdm\admin\controllers\AssignmentController',
+                    /* 'userClassName' => 'app\models\User', */
+                    'idField' => 'id',
+                    'usernameField' => 'username',
+                    /*'searchClass' => 'app\models\UserSearch'*/
+                ],
+            ],
+            'layout' => 'left-menu',
+            'mainLayout' => '@app/modules/admin/views/layouts/adminMain.php',
         ]
     ],
-
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            'site/*',
+            'admin/*',
+            'rbac/*',
+            'productManager/*',
+            'some-controller/some-action',
+            //TODO REMOVE
+        ]
+    ],
     'params' => $params,
 ];
 
