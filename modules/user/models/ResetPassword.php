@@ -6,7 +6,7 @@
  * Time: 17:23
  */
 
-namespace app\models;
+namespace app\modules\user\models;
 
 use mdm\admin\models\form\ResetPassword as ResetPasswordTemplate;
 

@@ -6,13 +6,10 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \mdm\admin\models\form\ChangePassword */
 
-//TODO amend style and check
-
 $this->title = 'Change Password';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2 style="text-align: center"><?= Html::encode($this->title) ?></h2>
 
     <p>Please fill out the following fields to change password:</p>
 
@@ -22,9 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'oldPassword')->passwordInput() ?>
                 <?= $form->field($model, 'newPassword')->passwordInput() ?>
                 <?= $form->field($model, 'retypePassword')->passwordInput() ?>
-                <div class="form-group">
-                    <?= Html::submitButton('Change', ['class' => 'btn btn-primary', 'name' => 'change-button']) ?>
-                </div>
+               <?= Html::submitButton('Change', ['class' => 'btn btn-primary btn-block', 'name' => 'change-button']) ?>
             <?php ActiveForm::end(); ?>
         </div>
     </div>

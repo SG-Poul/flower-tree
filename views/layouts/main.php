@@ -8,6 +8,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+Yii::setAlias('@logout', 'user/default/logout');
 
 AppAsset::register($this);
 ?>
@@ -40,16 +41,17 @@ AppAsset::register($this);
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Sign in', 'url' => ['/site/login']]
+                ['label' => 'Sign in', 'url' => ['/login']]
             ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
+            [
+                'label' => Yii::$app->user->identity->username,
+                'items' => [
+                    ['label' => 'Profile', 'url' => '/web/user'],
+                    ['label' => 'Orders',    'url' => '#'],
+                    ['label' => 'Change password',    'url' => '/web/user/default/change-password'],
+                    ['label' => 'Logout',    'url' => ['/logout'], ['data' => ['method' => 'post']]],
+                ],
+            ]
             )
         ],
     ]);

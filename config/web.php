@@ -17,7 +17,7 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'mdm\admin\models\User',
-            'loginUrl' => ['rbac/user/login'],
+            'loginUrl' => ['/user/login'],
             /*'enableAutoLogin' => true,*/
         ],
         'errorHandler' => [
@@ -47,7 +47,10 @@ $config = [
             'rules' => [
                 '<controller:\w+>/<id:\d+>'=>'<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>'
+                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                'login'=>'user/default/login',
+                'logout'=>'user/default/logout',
+                'signup'=>'user/default/signup',
             ],
         ],
         'authManager' => [
@@ -69,8 +72,8 @@ $config = [
             'controllerMap' => [
                 'assignment' => [
                     'class' => 'mdm\admin\controllers\AssignmentController',
-                    'userClassName' => 'app\models\User',
-                    'searchClass' => 'app\models\UserSearch',
+                    'userClassName' => 'app\modules\user\models\User',
+                    'searchClass' => 'app\modules\user\models\UserSearch',
                     'idField' => 'id',
                     'usernameField' => 'username',
                 ],

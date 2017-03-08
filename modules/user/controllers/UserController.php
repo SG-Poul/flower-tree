@@ -8,7 +8,7 @@ use app\modules\user\models\UserDBSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+// TODO configure access
 /**
  * UserController implements the CRUD actions for UserDB model.
  */

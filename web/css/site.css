@@ -12,6 +12,13 @@ body {
     border-radius: 7px;
 }
 
+.user-profile-edit {
+    width: 70%;
+    min-width: 500px;
+    max-width: 900px;
+    margin: auto;
+}
+
 .wrap {
     min-height: 100%;
     height: auto;

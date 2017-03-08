@@ -6,7 +6,7 @@
  * Time: 17:26
  */
 
-namespace app\models;
+namespace app\modules\user\models;
 
 use mdm\admin\models\searchs\User as UserSearchTemplate;
 
