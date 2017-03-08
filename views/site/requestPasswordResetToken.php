@@ -7,20 +7,15 @@ use yii\bootstrap\ActiveForm;
 /* @var $model \mdm\admin\models\form\PasswordResetRequest */
 
 $this->title = 'Request password reset';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-request-password-reset">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out your email. A link to reset password will be sent there.</p>
+    <h2 style="text-align: center"><?= Html::encode($this->title) ?></h2>
 
     <div class="row">
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
                 <?= $form->field($model, 'email') ?>
-                <div class="form-group">
-                    <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
-                </div>
+                <?= Html::submitButton('Send', ['class' => 'btn btn-primary btn-block']) ?>
             <?php ActiveForm::end(); ?>
         </div>
     </div>

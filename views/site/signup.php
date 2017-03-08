@@ -6,13 +6,10 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \mdm\admin\models\form\Signup */
 
-$this->title = 'Signup';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Sign up';
 ?>
 <div class="site-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out the following fields to signup:</p>
+    <h2 style="text-align: center"><?= Html::encode($this->title) ?></h2>
     <?= Html::errorSummary($model)?>
     <div class="row">
         <div class="col-lg-5">
@@ -20,9 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'username') ?>
                 <?= $form->field($model, 'email') ?>
                 <?= $form->field($model, 'password')->passwordInput() ?>
-                <div class="form-group">
-                    <?= Html::submitButton('Sign up', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
-                </div>
+                <?= Html::submitButton('Create account', ['class' => 'btn btn-primary btn-block', 'name' => 'signup-button']) ?>
             <?php ActiveForm::end(); ?>
         </div>
     </div>

@@ -62,6 +62,9 @@ $config = [
             'class' => 'app\modules\admin\Admin',
         ],
         'user' => [
+            'class' => 'app\modules\user\User',
+        ],
+        'rbac' => [
             'class' => 'mdm\admin\Module',
             'controllerMap' => [
                 'assignment' => [
@@ -85,7 +88,6 @@ $config = [
             'rbac/*',
             'gii/*',
             'productManager/*',
-            'some-controller/some-action',
             //TODO REMOVE
         ]
     ],

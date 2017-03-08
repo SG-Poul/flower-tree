@@ -6,6 +6,8 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \mdm\admin\models\form\ChangePassword */
 
+//TODO amend style and check
+
 $this->title = 'Change Password';
 $this->params['breadcrumbs'][] = $this->title;
 ?>

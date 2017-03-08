@@ -3,6 +3,15 @@ body {
     height: 100%;
 }
 
+.site-login, .site-signup, .site-request-password-reset {
+    width: 300px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid lightgrey;
+    border-radius: 7px;
+}
+
 .wrap {
     min-height: 100%;
     height: auto;
