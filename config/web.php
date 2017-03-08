@@ -61,15 +61,15 @@ $config = [
         'admin' => [
             'class' => 'app\modules\admin\Admin',
         ],
-        'rbac' => [
+        'user' => [
             'class' => 'mdm\admin\Module',
             'controllerMap' => [
                 'assignment' => [
                     'class' => 'mdm\admin\controllers\AssignmentController',
-                    /* 'userClassName' => 'app\models\User', */
+                    'userClassName' => 'app\models\User',
+                    'searchClass' => 'app\models\UserSearch',
                     'idField' => 'id',
                     'usernameField' => 'username',
-                    /*'searchClass' => 'app\models\UserSearch'*/
                 ],
             ],
             'layout' => 'left-menu',
@@ -81,7 +81,9 @@ $config = [
         'allowActions' => [
             'site/*',
             'admin/*',
+            'user/*',
             'rbac/*',
+            'gii/*',
             'productManager/*',
             'some-controller/some-action',
             //TODO REMOVE
