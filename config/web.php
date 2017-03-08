@@ -58,11 +58,8 @@ $config = [
         ]
     ],
     'modules' => [
-        'productManager' => [
-            'class' => 'app\modules\productManager\ProductManager',
-        ],
-        'admin' => [
-            'class' => 'app\modules\admin\Admin',
+        'product' => [
+            'class' => 'app\modules\product\Product',
         ],
         'user' => [
             'class' => 'app\modules\user\User',
@@ -79,18 +76,16 @@ $config = [
                 ],
             ],
             'layout' => 'left-menu',
-            'mainLayout' => '@app/modules/admin/views/layouts/adminMain.php',
         ]
     ],
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
             'site/*',
-            'admin/*',
             'user/*',
             'rbac/*',
             'gii/*',
-            'productManager/*',
+            'product/*',
             //TODO REMOVE
         ]
     ],
