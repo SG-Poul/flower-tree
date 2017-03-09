@@ -7,8 +7,6 @@ use yii\helpers\Html;
 /* @var $model app\modules\user\models\UserDB */
 
 $this->title = 'Create User Db';
-$this->params['breadcrumbs'][] = ['label' => 'User Dbs', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-db-create">
 

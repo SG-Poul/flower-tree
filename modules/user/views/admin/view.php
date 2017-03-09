@@ -6,9 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\user\models\UserDB */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'User Dbs', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = $model->username;
+
 ?>
 <div class="user-db-view">
 
@@ -30,13 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
             'email:email',
-            'status',
-            'created_at',
-            'updated_at',
+            'created_at:date',
+            'updated_at:date',
             'fullname',
             'address:ntext',
             'phone',

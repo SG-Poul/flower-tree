@@ -6,9 +6,6 @@ use yii\helpers\Html;
 /* @var $model app\modules\user\models\UserDB */
 
 $this->title = 'Update User Db: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'User Dbs', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="user-db-update">
 
