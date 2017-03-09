@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
 <div class="products-form">
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'categoryId')->dropDownList($categories) ?>
+    <?= $form->field($model, 'categoryId')->dropDownList($categories, ['prompt' =>'please select']) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -86,7 +86,7 @@ JS;
     ?>
     <!-- Image section End -->
 
-    <?= $form->field($uploadModel, 'uploadedFiles[]')->fileInput(['multiple' => true])->label('Add new') ?>
+    <?= $form->field($uploadModel, 'uploadedFiles[]')->fileInput(['multiple' => true, 'class' => 'upload, image-input'])->label('Add new') ?>
 
     <?= $form->field($model, 'price')->textInput() ?>
 

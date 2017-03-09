@@ -9,8 +9,30 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 Yii::setAlias('@logout', 'user/default/logout');
-
 AppAsset::register($this);
+
+$dropdownMenu = [];
+if (\Yii::$app->user->can('adminPermission')) {
+    $dropdownMenu = [
+        ['label' => 'Profile', 'url' => '/web/user'],
+        ['label' => 'Orders',    'url' => '#'],
+        ['label' => 'Change password',    'url' => '/web/user/default/change-password'],
+        ['label' => 'Logout',    'url' => ['/logout'], ['data' => ['method' => 'post']]],
+        '<li class="divider"></li>',
+        '<li class="dropdown-header">ADMIN</li>',
+        ['label' => 'Manage Products',  'url' => '/web/product/products'],
+        ['label' => 'Manage Users',    'url' => '/web/user/admin'],
+        ['label' => 'All Orders',    'url' => '#'],
+    ];
+} else {
+    $dropdownMenu = [
+        ['label' => 'Profile', 'url' => '/web/user'],
+        ['label' => 'Orders',    'url' => '#'],
+        ['label' => 'Change password',    'url' => '/web/user/default/change-password'],
+        ['label' => 'Logout',    'url' => ['/logout'], ['data' => ['method' => 'post']]],
+    ];
+}
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -45,12 +67,7 @@ AppAsset::register($this);
             ) : (
             [
                 'label' => Yii::$app->user->identity->username,
-                'items' => [
-                    ['label' => 'Profile', 'url' => '/web/user'],
-                    ['label' => 'Orders',    'url' => '#'],
-                    ['label' => 'Change password',    'url' => '/web/user/default/change-password'],
-                    ['label' => 'Logout',    'url' => ['/logout'], ['data' => ['method' => 'post']]],
-                ],
+                'items' => $dropdownMenu,
             ]
             )
         ],
@@ -65,6 +82,7 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 </div>
+<?= \bluezed\scrollTop\ScrollTop::widget() ?>
 
 <footer class="footer">
     <div class="container">
