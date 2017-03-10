@@ -78,10 +78,18 @@ class Products extends \yii\db\ActiveRecord
     public function getMainPhoto()
     {
         if (file_exists('assets/products/id-' . $this->id . '-1.png')) {
-
             return Html::img('@web/assets/products/id-' . $this->id . '-1.png', ['class' => 'thumbnail img-responsive']);
         } else {
             return Html::img('@web/assets/products/no-image.png', ['class' => 'thumbnail img-responsive']);
+        }
+    }
+
+    public function getMainPhotoIndex()
+    {
+        if (file_exists('assets/products/id-' . $this->id . '-1.png')) {
+            return Html::img('@web/assets/products/id-' . $this->id . '-1.png', ['class' => 'img-responsive']);
+        } else {
+            return Html::img('@web/assets/products/no-image.png', ['class' => 'img-responsive']);
         }
     }
 }

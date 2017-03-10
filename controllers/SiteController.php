@@ -3,10 +3,14 @@
 namespace app\controllers;
 
 use Yii;
+use yii\data\ActiveDataProvider;
+use yii\data\Pagination;
 use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
+use yii\web\Controller;
 use app\models\ContactForm;
+use app\modules\product\models\Products;
+
 
 class SiteController extends Controller
 {
@@ -59,7 +63,17 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $query = Products::find();
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 16]);
+        $models = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
+
+        return $this->render('index', [
+            'models' => $models,
+            'pages' => $pages,
+        ]);
     }
 
     /**

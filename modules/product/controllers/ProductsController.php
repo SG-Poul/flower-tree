@@ -86,7 +86,7 @@ class ProductsController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $uploadModel->uploadedFiles = UploadedFile::getInstances($uploadModel, 'uploadedFiles');
             if ($uploadModel->upload($model->id)) {
-                return $this->redirect(['update', 'id' => $model->id]);
+                return $this->redirect('index');
             }
         } else {
             return $this->render('create', [
