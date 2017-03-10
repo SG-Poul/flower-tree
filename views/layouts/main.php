@@ -53,7 +53,7 @@ if (\Yii::$app->user->can('adminPermission')) {
         'brandLabel' => 'Flowertree',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-inverse navbar-default',
         ],
     ]);
     echo Nav::widget([
@@ -75,7 +75,7 @@ if (\Yii::$app->user->can('adminPermission')) {
     NavBar::end();
     ?>
 
-    <div class="container">
+    <div class="container" style="padding-top: 0">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>

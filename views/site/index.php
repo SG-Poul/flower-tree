@@ -1,5 +1,6 @@
 <?php
 
+use yii\grid\GridView;
 use yii\widgets\LinkPager;
 
 /* @var $this yii\web\View */
@@ -10,13 +11,7 @@ $this->title = 'Flowertree';
 
     <div class="container">
         <div class="col-sm-2">
-            Categories
-            <ul>
-                <li>flowers</li>
-                <li>gifts</li>
-                <li>ect</li>
-            </ul>
-
+            <?= $this->render('search', ['model' => $searchModel, 'categories' => $categories]) ?>
         </div>
         <div class="col-sm-10">
             <?php foreach ($models as $model) {?>
@@ -34,7 +29,7 @@ $this->title = 'Flowertree';
                         </div>
                         <h4 style="text-align: center"><?= $model->name ?> </h4>
                         <span class="glyphicon glyphicon-comment" style=" display: block;float:left;width: 30%;padding-left: 10px" aria-hidden="true"> 0</span>
-                        <span class="glyphicon glyphicon-tag" style=" display: block;float:right;width: 45%;" aria-hidden="true"> <?= $model->price ?> UAH </span>
+                        <span class="glyphicon glyphicon-tag" style=" display: block;float:right;width: 50%;" aria-hidden="true"> <?= $model->price ?> UAH </span>
                     </div>
                 </a>
              <?php } ?>

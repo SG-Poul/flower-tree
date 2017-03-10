@@ -10,6 +10,8 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use app\models\ContactForm;
 use app\modules\product\models\Products;
+use app\modules\product\models\ProductsSearch;
+use app\modules\product\models\Category;
 
 
 class SiteController extends Controller
@@ -63,16 +65,28 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $query = Products::find();
-        $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 16]);
-        $models = $query->offset($pages->offset)
-            ->limit($pages->limit)
-            ->all();
+        $searchModel = new ProductsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $categories = [];
+        $categoriesName = [];
+        foreach (Category::find()->asArray()->indexBy('id')->all() as $item) {
+            $categories[$item['id']] = $item['name'];
+            $categoriesName[$item['name']] = $item['name'];
+        }
+
+        $pages = new Pagination(['totalCount' => $dataProvider->getTotalCount(), 'pageSize' => 16]);
+
+        $models = $dataProvider->setPagination($pages);
+        $models = $dataProvider->getModels();
 
         return $this->render('index', [
             'models' => $models,
             'pages' => $pages,
+
+            'searchModel' => $searchModel,
+            'categories' => $categories,
+            'categoriesName' => $categoriesName,
         ]);
     }
 
