@@ -17,6 +17,7 @@ if (\Yii::$app->user->can('adminPermission')) {
         '<li class="divider"></li>',
         '<li class="dropdown-header">'. \Yii::t('app', 'Admin') .'</li>',
         ['label' => \Yii::t('app', 'Manage Products') ,  'url' => '/web/product/products'],
+        ['label' => \Yii::t('app', 'Manage Comments') ,  'url' => '/web/comments'],
         ['label' => \Yii::t('app', 'Manage Users'),      'url' => '/web/user/admin'],
         ['label' => \Yii::t('app', 'Manage Orders'),     'url' => '#'],
         ['label' => \Yii::t('app', 'Change password'),   'url' => '/web/user/default/change-password'],

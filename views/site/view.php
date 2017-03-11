@@ -44,8 +44,15 @@ if ($language == 'uk') {
                 ?>
             </p>
             <span class="glyphicon glyphicon-tag product-price" aria-hidden="true"> <?= $model->price ?> <?= \Yii::t('app', 'UAH')?> </span>
-
         </div>
+        <br/>
+        <?php
+        // the model to which are added comments, for example:
+        //            $model = Post::find()->where(['title' => 'some post title'])->one();
+
+        echo \yii2mod\comments\widgets\Comment::widget([
+            'model' => $model,
+        ]); ?>
     </div>
 
     <div tabindex="-1" class="modal fade" id="myModal" role="dialog">

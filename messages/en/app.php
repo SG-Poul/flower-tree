@@ -9,6 +9,7 @@ return [
     'Logout'           =>  'Logout'         ,
     'Admin'            =>  'Admin'          ,
     'Manage Products'  =>  'Manage Products',
+    'Manage Comments'  =>  'Manage Comments',
     'Manage Users'     =>  'Manage Users'   ,
     'Manage Orders'    =>  'Manage Orders'  ,
     'Home'             =>  'Home'           ,
