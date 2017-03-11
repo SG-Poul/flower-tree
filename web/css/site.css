@@ -33,6 +33,45 @@ body {
     height: 20px;
 }
 
+.product-container {
+    border: 1px solid #2A2A2A;
+    display: inline-block;
+    overflow:hidden;
+    width: 220px;
+    margin: 0 2px 20px;
+    padding-bottom: 10px;
+    border-radius: 4px;
+}
+
+.product-photo {
+    width:220px;
+    height:220px;
+    overflow:hidden;
+}
+
+.product-comment {
+    display: block;
+    float:left;
+    width: 30%;
+    padding-left: 10px
+}
+
+.product-price {
+    display: block;
+    float:right;
+    width: 50%;
+}
+
+.photo-container {
+    border: 1px solid #2A2A2A;
+    display: inline-block;
+    overflow:hidden;
+    width: 230px;
+    height: 230px;
+    margin: 5px;
+    border-radius: 4px;
+}
+
 .wrap {
     min-height: 100%;
     height: auto;

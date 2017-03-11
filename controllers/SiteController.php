@@ -12,6 +12,7 @@ use app\models\ContactForm;
 use app\modules\product\models\Products;
 use app\modules\product\models\ProductsSearch;
 use app\modules\product\models\Category;
+use yii\web\NotFoundHttpException;
 
 
 class SiteController extends Controller
@@ -88,6 +89,38 @@ class SiteController extends Controller
             'categories' => $categories,
             'categoriesName' => $categoriesName,
         ]);
+    }
+
+    /**
+     * Displays a single Product.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionView($id)
+    {
+        $model = $this->findProduct($id);
+        $images = $model->getAllPhotos();
+
+        return $this->render('view', [
+            'model' => $model,
+            'images' => $images,
+        ]);
+    }
+
+    /**
+     * Finds the Products model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Products the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findProduct($id)
+    {
+        if (($model = Products::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 
     /**

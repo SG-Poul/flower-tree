@@ -92,4 +92,21 @@ class Products extends \yii\db\ActiveRecord
             return Html::img('@web/assets/products/no-image.png', ['class' => 'img-responsive']);
         }
     }
+
+    public function getAllPhotos()
+    {
+        $images = [];
+        $imageCount = 1;
+
+        while (file_exists('assets/products/id-' . $this->id . '-' . $imageCount . '.png')) {
+            $images[] = Html::img('@web/assets/products/id-' . $this->id . '-' . $imageCount . '.png', ['class' => 'img-responsive img-modal']);
+            $imageCount++;
+        }
+
+        if ($imageCount == 1) {
+            $images[] = Html::img('@web/assets/products/no-image.png', ['class' => 'img-responsive']);
+        }
+
+        return $images;
+    }
 }

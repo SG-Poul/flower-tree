@@ -33,7 +33,7 @@ class ImageUploader extends Model
         }
     }
 
-    public function getProductImages($productId) //TODO Update for images deleted
+    public function getProductImages($productId)
     {
         $images = [];
         $imageCount = 1;
