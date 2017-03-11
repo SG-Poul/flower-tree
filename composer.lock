@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5d2ca5e74aa7a2bf54f29d3742256231",
+    "content-hash": "69bc42f12eaddae89d885c524299483b",
     "packages": [
         {
             "name": "bluezed/yii2-scroll-top",
@@ -355,16 +355,16 @@
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
-            "version": "dev-master",
+            "version": "v4.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "06a2db023a290ce955421490b483fe6d1942973f"
+                "reference": "219447a8c21b1c82e534dc2e6a73386933fc9c5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/06a2db023a290ce955421490b483fe6d1942973f",
-                "reference": "06a2db023a290ce955421490b483fe6d1942973f",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/219447a8c21b1c82e534dc2e6a73386933fc9c5e",
+                "reference": "219447a8c21b1c82e534dc2e6a73386933fc9c5e",
                 "shasum": ""
             },
             "type": "library",
@@ -404,7 +404,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2017-03-09 17:11:07"
+            "time": "2017-02-21T06:45:16+00:00"
         },
         {
             "name": "kartik-v/bootstrap-star-rating",
@@ -542,6 +542,53 @@
                 "yii2"
             ],
             "time": "2017-02-22T05:58:53+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-slider",
+            "version": "v1.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-slider.git",
+                "reference": "81a2463294fa88a58d0ed8214254c8a6b63b7e89"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-slider/zipball/81a2463294fa88a58d0ed8214254c8a6b63b7e89",
+                "reference": "81a2463294fa88a58d0ed8214254c8a6b63b7e89",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\slider\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An advanced slider input for Yii Framework 2 for both touch enabled and desktop devices based on bootstrap-slider.",
+            "homepage": "https://github.com/kartik-v/yii2-slider",
+            "keywords": [
+                "bootstrap",
+                "bootstrap 3",
+                "extension",
+                "range",
+                "slider",
+                "widget",
+                "yii2"
+            ],
+            "time": "2016-01-10T17:24:24+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-activeform",
@@ -3597,7 +3644,7 @@
         },
         {
             "name": "symfony/browser-kit",
-            "version": "v3.2.5",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/browser-kit.git",
@@ -3654,7 +3701,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.2.5",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -3717,7 +3764,7 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v3.2.5",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -3770,7 +3817,7 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v3.2.5",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
@@ -3827,7 +3874,7 @@
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v3.2.5",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
@@ -3883,7 +3930,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.2.5",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -3943,7 +3990,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v3.2.5",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -4051,7 +4098,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.2.5",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -4304,9 +4351,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "kartik-v/bootstrap-fileinput": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

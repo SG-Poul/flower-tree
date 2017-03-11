@@ -28,7 +28,10 @@ body {
     padding: 80px;
 }
 
-img{border:0;}
+.slider.slider-horizontal {
+    width: 160px;
+    height: 20px;
+}
 
 .wrap {
     min-height: 100%;

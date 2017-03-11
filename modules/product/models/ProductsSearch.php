@@ -16,13 +16,15 @@ class ProductsSearch extends Products
      * @inheritdoc
      */
     public $categoryName;
+    public $priceRange;
+    public $min_price;
+    public $max_price;
 
     public function rules()
     {
         return [
             [['id', 'categoryId', 'price'], 'integer'],
-            [['name'], 'safe'],
-            [['categoryName'], 'safe']
+            [['name', 'categoryName', 'priceRange'], 'safe'],
         ];
     }
 
@@ -88,7 +90,15 @@ class ProductsSearch extends Products
             'price' => $this->price,
         ]);
 
+        $this->priceRange = explode(",", $this->priceRange);
+        $this->min_price = $this->priceRange[0];
+        $this->max_price = $this->priceRange[1];
+        $this->priceRange = implode(",", $this->priceRange);
+        if ($this->max_price == 1000) $this->max_price = null;
+
         $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['>', 'price', $this->min_price]);
+        $query->andFilterWhere(['<', 'price', $this->max_price]);
 
 //        $query->joinWith(['category']);
 
