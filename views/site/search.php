@@ -4,6 +4,7 @@ use yii\helpers\Html;
 //use yii\widgets\ActiveForm;
 use kartik\widgets\ActiveForm;
 use kartik\slider\Slider;
+$language = \Yii::$app->language;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\product\models\ProductsSearch */
@@ -16,14 +17,14 @@ use kartik\slider\Slider;
         'action' => ['index'],
         'method' => 'get',
     ]);
-    echo Html::submitButton('All', ['class' => 'btn btn-default btn-block']);
+    echo Html::submitButton(\Yii::t('app', 'All categories'), ['class' => 'btn btn-default btn-block']);
 
     foreach ($categories as $categoryId => $categoryName) {
         echo Html::submitButton($categoryName, ['name' => 'ProductsSearch[categoryId]', 'value' => $categoryId,
             'class' => 'btn btn-default btn-block']);
     }
     echo '<br/>';
-    echo $form->field($model, 'name');
+    echo $form->field($model, 'name')->label(\Yii::t('app', 'search name'));;
 
     echo
         $form->field($model, 'priceRange')->widget(Slider::classname(), [
@@ -41,9 +42,9 @@ use kartik\slider\Slider;
             'tooltip_split'=>'true',
             'precision'=>2,
         ],
-    ]);
+    ])->label(\Yii::t('app', 'price'));
 
-    echo Html::submitButton('Search', ['class' => 'btn btn-default btn-block']);
+    echo Html::submitButton(\Yii::t('app', 'search'), ['class' => 'btn btn-default btn-block']);
 
     ActiveForm::end(); ?>
 

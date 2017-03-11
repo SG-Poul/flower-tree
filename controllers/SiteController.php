@@ -69,11 +69,21 @@ class SiteController extends Controller
         $searchModel = new ProductsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $language = \Yii::$app->language;
+        $loc = '';
+        if ($language == 'uk') {
+            $loc = 'ukr';
+        } else if ($language == 'ru') {
+            $loc = 'rus';
+        } else if ($language == 'en') {
+            $loc = 'eng';
+        }
+
         $categories = [];
         $categoriesName = [];
         foreach (Category::find()->asArray()->indexBy('id')->all() as $item) {
-            $categories[$item['id']] = $item['name'];
-            $categoriesName[$item['name']] = $item['name'];
+            $categories[$item['id']] = $item[$loc];
+            $categoriesName[$item[$loc]] = $item[$loc];
         }
 
         $pages = new Pagination(['totalCount' => $dataProvider->getTotalCount(), 'pageSize' => 16]);

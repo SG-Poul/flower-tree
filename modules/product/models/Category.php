@@ -28,8 +28,9 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'ukr', 'rus', 'eng'], 'required'],
             [['name'], 'string', 'max' => 24],
+            [['ukr', 'rus', 'eng'], 'string', 'max' => 255],
             [['name'], 'unique'],
         ];
     }
@@ -42,6 +43,9 @@ class Category extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
+            'ukr' => 'Ukrainian localisation',
+            'rus' => 'Russian localisation',
+            'eng' => 'English localisation',
         ];
     }
 

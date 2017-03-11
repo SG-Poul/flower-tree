@@ -15,4 +15,11 @@ return [
     'About'            => 'О нас',
     'Contact'          => 'Контакты',
     'Sign in'          => 'Войти',
+    // Index page
+    'UAH'              => 'грн.',
+    'All categories'   => 'Все категории',
+    'price'            => 'Цена',
+    'search name'      => 'Поиск по имени',
+    'search'           => 'Поиск',
+
 ];

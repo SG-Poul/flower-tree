@@ -25,6 +25,9 @@ Yii::setAlias('@products', '/product/products');
 
             'id',
             'name',
+            'ukr',
+            'rus',
+            'eng',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -19,7 +19,7 @@ class CategorySearch extends Category
     {
         return [
             [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['name', 'ukr', 'rus', 'eng'], 'safe'],
         ];
     }
 

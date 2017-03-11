@@ -28,6 +28,9 @@ $this->title = $model->name;
         'attributes' => [
             'id',
             'name',
+            'ukr',
+            'rus',
+            'eng',
         ],
     ]) ?>
 

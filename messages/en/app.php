@@ -15,4 +15,12 @@ return [
     'About'            =>  'About'          ,
     'Contact'          =>  'Contact'        ,
     'Sign in'          =>  'Sign in'        ,
+    // Index page
+    'UAH'              => 'UAH',
+    'All categories'   => 'All categories',
+    'price'            => 'Price',
+    'search name'      => 'Search by name',
+    'search'           => 'Search',
+
+
 ];
