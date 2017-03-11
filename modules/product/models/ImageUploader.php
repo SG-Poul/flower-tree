@@ -2,6 +2,7 @@
 namespace app\modules\product\models;
 
 use yii\base\Model;
+use yii\helpers\Html;
 use yii\web\UploadedFile;
 
 class ImageUploader extends Model
@@ -39,13 +40,14 @@ class ImageUploader extends Model
         $imageCount = 1;
 
         while (file_exists('assets/products/id-' . $productId . '-' . $imageCount . '.png')) {
-            $images[] = 'id-' . $productId . '-' . $imageCount . '.png';
+            $images[] = Html::img('@web/assets/products/id-' . $productId . '-' . $imageCount . '.png', ['class' => 'img-responsive img-modal']);
             $imageCount++;
         }
 
         if ($imageCount == 1) {
-            $images[] = 'no-image.png';
+            $images[] = Html::img('@web/assets/products/no-image.png', ['class' => 'img-responsive']);
         }
+
         return $images;
     }
 

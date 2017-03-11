@@ -16,26 +16,22 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'categoryId')->dropDownList($categories, ['prompt' =>'please select']) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'descriptionUkr_Name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'descriptionRus_Name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'descriptionEng_Name')->textInput(['maxlength' => true]) ?>
 
     <h2>Images</h2>
 
     <!-- Image section Start -->
 
     <div class="container">
-        <div class="row">
-
-            <?php
-            $imgCount = 0;
-            foreach ($images as $img) {
-                $imgCount++;
-                ?>
-                <div class="col-lg-3 col-sm-4 col-xs-6">
-                    <a title="<?= 'id-' . $model->id . '-' . $imgCount . '.png'?>" href="#">
-                        <?= Html::img('@web/assets/products/' . $img, ['class' => 'thumbnail img-responsive']); ?>
-                    </a>
-                </div>
-            <?php } ?>
-        </div>
+        <?php
+        $imgCount = 0;
+        foreach ($images as $img) {
+            $imgCount++;
+            echo '<div class="photo-container-small"><a title="' . 'id-' . $model->id . '-' . $imgCount . '.png' . '" href="#">' . $img . '</a></div>';
+        }
+        ?>
     </div>
     <div tabindex="-1" class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -58,7 +54,7 @@ use yii\widgets\ActiveForm;
 
     <?php
         $imageScript = <<< JS
-        $('.thumbnail').click(function(){
+        $('.img-modal').click(function(){
             $('.modal-body').empty();
   	        var title = $(this).parent('a').attr("title");
   	        $('.modal-title').html(title);
@@ -87,6 +83,10 @@ JS;
     <!-- Image section End -->
 
     <?= $form->field($uploadModel, 'uploadedFiles[]')->fileInput(['multiple' => true, 'class' => 'upload, image-input'])->label('Add new') ?>
+
+    <?= $form->field($model, 'descriptionUkr_Description')->textInput() ?>
+    <?= $form->field($model, 'descriptionRus_Description')->textInput() ?>
+    <?= $form->field($model, 'descriptionEng_Description')->textInput() ?>
 
     <?= $form->field($model, 'price')->textInput() ?>
 

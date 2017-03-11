@@ -72,6 +72,16 @@ body {
     border-radius: 4px;
 }
 
+.photo-container-small {
+    border: 1px solid #2A2A2A;
+    display: inline-block;
+    overflow:hidden;
+    width: 180px;
+    height: 180px;
+    margin: 5px;
+    border-radius: 4px;
+}
+
 .wrap {
     min-height: 100%;
     height: auto;

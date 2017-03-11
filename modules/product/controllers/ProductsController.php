@@ -5,6 +5,7 @@ namespace app\modules\product\controllers;
 use Yii;
 use app\modules\product\models\Products;
 use app\modules\product\models\Category;
+use app\modules\product\models\Description;
 use app\modules\product\models\ProductsSearch;
 use app\modules\product\models\ImageUploader;
 use yii\web\UploadedFile;
@@ -77,6 +78,8 @@ class ProductsController extends Controller
     {
         $model = new Products();
         $uploadModel = new ImageUploader();
+        $modelDescription = new Description();
+        $request = Yii::$app->request->post('Products');
 
         $categories = [];
         foreach (Category::find()->asArray()->indexBy('id')->all() as $item) {
@@ -85,7 +88,15 @@ class ProductsController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $uploadModel->uploadedFiles = UploadedFile::getInstances($uploadModel, 'uploadedFiles');
-            if ($uploadModel->upload($model->id)) {
+            $modelDescription->productId = $model->id;
+            $modelDescription->ukr_Name = $request['descriptionUkr_Name'];
+            $modelDescription->rus_Name = $request['descriptionRus_Name'];
+            $modelDescription->eng_Name = $request['descriptionEng_Name'];
+            $modelDescription->ukr_Description = $request['descriptionUkr_Description'];
+            $modelDescription->rus_Description = $request['descriptionRus_Description'];
+            $modelDescription->eng_Description = $request['descriptionEng_Description'];
+
+            if ($uploadModel->upload($model->id) && $modelDescription->save()) {
                 return $this->redirect('index');
             }
         } else {
@@ -107,6 +118,12 @@ class ProductsController extends Controller
     {
         $model = $this->findModel($id);
         $uploadModel = new ImageUploader();
+        $request = Yii::$app->request->post('Products');
+        $modelDescription = $this->findDescriptionModel($model->descriptionId);
+
+        if ($modelDescription == null) {
+            $modelDescription = new Description();
+        }
 
         $categories = [];
         foreach (Category::find()->asArray()->indexBy('id')->all() as $item) {
@@ -117,7 +134,14 @@ class ProductsController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $uploadModel->uploadedFiles = UploadedFile::getInstances($uploadModel, 'uploadedFiles');
-            if ($uploadModel->upload($model->id)) {
+            $modelDescription->productId = $model->id;
+            $modelDescription->ukr_Name = $request['descriptionUkr_Name'];
+            $modelDescription->rus_Name = $request['descriptionRus_Name'];
+            $modelDescription->eng_Name = $request['descriptionEng_Name'];
+            $modelDescription->ukr_Description = $request['descriptionUkr_Description'];
+            $modelDescription->rus_Description = $request['descriptionRus_Description'];
+            $modelDescription->eng_Description = $request['descriptionEng_Description'];
+            if ($uploadModel->upload($model->id && $modelDescription->save())) {
                 return $this->redirect(['update', 'id' => $model->id]);
             }
         } else {
@@ -138,9 +162,12 @@ class ProductsController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-        $model = new ImageUploader();
-        $model->deleteAllImages($id);
+        $model = $this->findModel($id);
+        $modelDescription = $this->findDescriptionModel($model->descriptionId);
+        if ($modelDescription != null) $modelDescription->delete();
+        $model->delete();
+        $modelImage = new ImageUploader();
+        $modelImage->deleteAllImages($id);
 
         return $this->redirect(['index']);
     }
@@ -158,6 +185,22 @@ class ProductsController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    /**
+     * Finds the Products model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Products the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findDescriptionModel($id)
+    {
+        if (($model = Description::findOne($id)) !== null) {
+            return $model;
+        } else {
+            return null;
         }
     }
 

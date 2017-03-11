@@ -16,8 +16,15 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'categoryId')->dropDownList($categories, ['prompt' =>'please select']) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'descriptionUkr_Name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'descriptionRus_Name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'descriptionEng_Name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($uploadModel, 'uploadedFiles[]')->fileInput(['multiple' => true, 'class' => 'image-input'])->label('Images') ?>
+
+    <?= $form->field($model, 'descriptionUkr_Description')->textInput() ?>
+    <?= $form->field($model, 'descriptionRus_Description')->textInput() ?>
+    <?= $form->field($model, 'descriptionEng_Description')->textInput() ?>
 
     <?= $form->field($model, 'price')->textInput() ?>
 
