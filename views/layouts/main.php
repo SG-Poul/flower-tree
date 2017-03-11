@@ -14,25 +14,22 @@ AppAsset::register($this);
 $dropdownMenu = [];
 if (\Yii::$app->user->can('adminPermission')) {
     $dropdownMenu = [
-        ['label' => 'Profile', 'url' => '/web/user'],
-        ['label' => 'Orders',    'url' => '#'],
-        ['label' => 'Change password',    'url' => '/web/user/default/change-password'],
-        ['label' => 'Logout',    'url' => ['/logout'], ['data' => ['method' => 'post']]],
         '<li class="divider"></li>',
-        '<li class="dropdown-header">ADMIN</li>',
-        ['label' => 'Manage Products',  'url' => '/web/product/products'],
-        ['label' => 'Manage Users',    'url' => '/web/user/admin'],
-        ['label' => 'All Orders',    'url' => '#'],
+        '<li class="dropdown-header">'. \Yii::t('app', 'Admin') .'</li>',
+        ['label' => \Yii::t('app', 'Manage Products') ,  'url' => '/web/product/products'],
+        ['label' => \Yii::t('app', 'Manage Users'),      'url' => '/web/user/admin'],
+        ['label' => \Yii::t('app', 'Manage Orders'),     'url' => '#'],
+        ['label' => \Yii::t('app', 'Change password'),   'url' => '/web/user/default/change-password'],
+        ['label' => \Yii::t('app', 'Logout'),    'url' => ['/logout'], ['data' => ['method' => 'post']]],
     ];
 } else {
     $dropdownMenu = [
-        ['label' => 'Profile', 'url' => '/web/user'],
-        ['label' => 'Orders',    'url' => '#'],
-        ['label' => 'Change password',    'url' => '/web/user/default/change-password'],
-        ['label' => 'Logout',    'url' => ['/logout'], ['data' => ['method' => 'post']]],
+        ['label' => \Yii::t('app', 'Profile'),            'url' => '/web/user'],
+        ['label' => \Yii::t('app', 'Orders'),             'url' => '#'],
+        ['label' => \Yii::t('app', 'Change password'),    'url' => '/web/user/default/change-password'],
+        ['label' => \Yii::t('app', 'Logout'),             'url' => ['/logout'], ['data' => ['method' => 'post']]],
     ];
 }
-
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -55,15 +52,25 @@ if (\Yii::$app->user->can('adminPermission')) {
         'options' => [
             'class' => 'navbar-inverse navbar-default',
         ],
-    ]);
+    ]); ?>
+    <div class="navbar-text pull-right">
+        <?=
+        \lajax\languagepicker\widgets\LanguagePicker::widget([
+            'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_DROPDOWN,
+            'size' => \lajax\languagepicker\widgets\LanguagePicker::SIZE_LARGE
+        ]);
+        ?>
+    </div>
+    <?php
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => \Yii::t('app', 'Home'),    'url' => ['/site/index']],
+            ['label' => \Yii::t('app', 'About'),   'url' => ['/site/about']],
+            ['label' => \Yii::t('app', 'Contact'), 'url' => ['/site/contact']],
+
             Yii::$app->user->isGuest ? (
-                ['label' => 'Sign in', 'url' => ['/login']]
+                ['label' => \Yii::t('app', 'Sign in'), 'url' => ['/login']]
             ) : (
             [
                 'label' => Yii::$app->user->identity->username,
