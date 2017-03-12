@@ -67,6 +67,7 @@ $config = [
                 'logout'=>'user/default/logout',
                 'signup'=>'user/default/signup',
                 'cart'=>'order/cart',
+                'orders'=>'order/order',
             ],
         ],
         'authManager' => [
@@ -96,6 +97,10 @@ $config = [
                 'order' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@app/modules/order/messages',
+                ],
+                'user' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/modules/user/messages',
                 ],
             ],
         ],

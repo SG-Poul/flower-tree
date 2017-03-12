@@ -6,15 +6,15 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \mdm\admin\models\form\Signup */
 
-$this->title = 'Sign up';
+$this->title = \Yii::t('user', 'sign up');
 ?>
 <div class="site-signup">
     <h2 style="text-align: center"><?= Html::encode($this->title) ?></h2>
     <?= Html::errorSummary($model) ?>
     <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-    <?= $form->field($model, 'username') ?>
-    <?= $form->field($model, 'email') ?>
-    <?= $form->field($model, 'password')->passwordInput() ?>
-    <?= Html::submitButton('Create account', ['class' => 'btn btn-primary btn-block', 'name' => 'signup-button']) ?>
+    <?= $form->field($model, 'username')->label(\Yii::t('user', 'username')) ?>
+    <?= $form->field($model, 'email')->label(\Yii::t('user', 'username')) ?>
+    <?= $form->field($model, 'password')->passwordInput()->label(\Yii::t('user', 'password')) ?>
+    <?= Html::submitButton(\Yii::t('user', 'Create account'), ['class' => 'btn btn-primary btn-block', 'name' => 'signup-button']) ?>
     <?php ActiveForm::end(); ?>
 </div>

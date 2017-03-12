@@ -22,9 +22,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($uploadModel, 'uploadedFiles[]')->fileInput(['multiple' => true, 'class' => 'image-input'])->label('Images') ?>
 
-    <?= $form->field($model, 'descriptionUkr_Description')->textInput() ?>
-    <?= $form->field($model, 'descriptionRus_Description')->textInput() ?>
-    <?= $form->field($model, 'descriptionEng_Description')->textInput() ?>
+    <?= $form->field($model, 'descriptionUkr_Description')->textarea(['rows' => 5]) ?>
+    <?= $form->field($model, 'descriptionRus_Description')->textarea(['rows' => 5]) ?>
+    <?= $form->field($model, 'descriptionEng_Description')->textarea(['rows' => 5]) ?>
 
     <?= $form->field($model, 'price')->textInput() ?>
 

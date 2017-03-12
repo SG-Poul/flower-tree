@@ -97,6 +97,10 @@ body {
     padding-left: 0px;
 }
 
+.no-resize {
+    resize: none;
+}
+
 .wrap {
     min-height: 100%;
     height: auto;

@@ -22,4 +22,6 @@ return [
     'price'       => 'Price',
     'quantity'    => 'Quantity',
     'delete'      => 'Delete',
+    'total price' => 'Total order price',
+    'make order'  => 'Make order',
 ];

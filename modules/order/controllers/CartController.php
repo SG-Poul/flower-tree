@@ -2,11 +2,12 @@
 
 namespace app\modules\order\controllers;
 
-use app\modules\product\models\Products;
 use Yii;
 use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use app\modules\product\models\Products;
+use app\modules\user\models\UserDB;
 
 /**
  * Default controller for the `Order` module
@@ -19,20 +20,28 @@ class CartController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['login']);
+        }
+
         $positions = [];
         $photos = [];
         $models = [];
-        foreach(Yii::$app->cart->positions as $position){
+        foreach (Yii::$app->cart->positions as $position) {
             $model = Products::findOne($position->id);
             $models[$position->id] = $model;
             $photo = Html::img('@web/assets/products/id-' . $position->id . '-1.png', ['class' => 'img-responsive']);
             $positions[] = $position;
             $photos[$position->id] = $photo;
         }
-        return $this->render('index',[
-            'positions'=>$positions,
-            'photos'=>$photos,
-            'models'=>$models,
+
+        $userModel = $this->findUser();
+
+        return $this->render('index', [
+            'positions' => $positions,
+            'photos' => $photos,
+            'models' => $models,
+            'userModel' => $userModel,
         ]);
     }
 
@@ -60,6 +69,20 @@ class CartController extends Controller
     {
         Yii::$app->cart->removeById($id);
         return $this->redirect(['index']);
+    }
+
+    public function actionMakeOrder()
+    {
+        return 'ok';
+    }
+
+    protected function findUser()
+    {
+        if (($userModel = UserDB::findOne(Yii::$app->user->id)) !== null) {
+            return $userModel;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 
 

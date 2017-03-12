@@ -14,15 +14,15 @@ $this->title = $model->username;
 
         <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'fullname')->textInput(['maxlength' => true]) ?>
-        <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'fullname')->textInput(['maxlength' => true])->label(\Yii::t('user', 'full name')) ?>
+        <?= $form->field($model, 'email')->textInput(['maxlength' => true])->label(\Yii::t('user', 'email')) ?>
         <?= $form->field($model, 'phone',
-        ['template'=>'<label for="phone">' . $model->getAttributeLabel('phone') . '</label><div class="input-group"><span class="input-group-addon">+380</span>{input}</div>{error}'])->
-            textInput(['placeholder' => $model->getAttributeLabel( 'phone' )]) ?>
-        <?= $form->field($model, 'address')->textarea(['rows' => 6]) ?>
+        ['template'=>'<label for="phone">' . \Yii::t('user', 'phone') . '</label><div class="input-group"><span class="input-group-addon">+380</span>{input}</div>{error}'])->
+            textInput() ?>
+        <?= $form->field($model, 'address')->textarea(['rows' => 3])->label(\Yii::t('user', 'address')) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save changes', ['class' => 'btn btn-primary btn-block']) ?>
+        <?= Html::submitButton(\Yii::t('user', 'save changes'), ['class' => 'btn btn-primary btn-block']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
