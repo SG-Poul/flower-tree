@@ -8,7 +8,7 @@ $product_name = '';
 $url = '';
 $this->title = \Yii::t('order', 'cart');
 
-
+// TODO: fix for mobile layout
 ?>
 <div class="Order-default-index">
     <div class="row">
@@ -16,32 +16,34 @@ $this->title = \Yii::t('order', 'cart');
             <?php
             foreach ($positions as $position):
                 $model = $models[$position->id];
+                $url = Url::to(['/site/' . $position->id]);
                 ?>
                 <div class="well">
                     <div class="photo-container">
-                        <?= $photos[$position->id] ?>
+                        <a href="<?= $url ?>"><?= $photos[$position->id] ?></a>
                     </div>
                     <div class="cart-description">
                         <?php
                         if ($language == 'uk') $product_name = Html::encode($model->descriptionUkr_Name);
                         else if ($language == 'ru') $product_name = Html::encode($model->descriptionRus_Name);
                         else if ($language == 'en') $product_name = Html::encode($model->descriptionEng_Name);
-                        $url = Url::to(['/site/' . $position->id]);
                         ?>
 
-                        <a href="<?= $url ?>" style="color: #1c1c1c; text-decoration: none;"><h1> <?= $product_name ?> </h1></a>
-                        <p> <h3><?= \Yii::t('order', 'price') ?> <?= $position->price ?></h3></p>
+                        <a href="<?= $url ?>" style="color: #1c1c1c; text-decoration: none;"><h3><strong><?= $product_name ?></strong></h3></a>
+                        <p> <h4><?= \Yii::t('order', 'price') ?> <?= $position->price ?> <?=\Yii::t('app', 'UAH') ?></h4></p>
 
-                        <div class="btn-group" role="group" aria-label="...">
+                        <div class="btn-group count-block" role="group" aria-label="...">
                             <?php $form = ActiveForm::begin(['class'=>'form-horizontal', 'action' => ['/order/cart/change-quantity'], 'method' => 'get',]); ?>
                             <?= Html::hiddenInput('id', $position->id); ?>
                             <?= Html::submitButton('<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>', ['name' => 'value', 'value' => -1, 'class' => 'btn btn-default btn-lg']); ?>
                             <?= Html::button(\Yii::t('order', 'quantity') . ' : ' . $position->quantity, ['class' => 'btn btn-default btn-lg disabled ']) ?>
                             <?= Html::submitButton('<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>', ['name' => 'value', 'value' => 1,  'class' => 'btn btn-default btn-lg']); ?>
-                            <?php ActiveForm::end(); ?>
+                            <?php ActiveForm::end();
+                            // TODO: block btn if count is 1
+                            ?>
                         </div>
                         <?php $form = ActiveForm::begin(['class'=>'form-horizontal', 'action'=>Url::toRoute(['/order/cart/delete-from-cart','id'=>$position->id])]); ?>
-                        <?= Html::submitButton(\Yii::t('order', 'delete'), ['class' => 'btn btn-danger btn-sm']) ?>
+                        <?= Html::submitButton(\Yii::t('order', 'delete'), ['class' => 'btn btn-danger btn-sm delete-btn']) ?>
                         <?php ActiveForm::end(); ?>
                     </div>
                 </div>
@@ -62,7 +64,7 @@ $this->title = \Yii::t('order', 'cart');
 
                 <div class="user-profile-edit">
 
-                    <?php $form = ActiveForm::begin(['class'=>'form-horizontal', 'action' => ['/order/cart/make-order'], 'method' => 'get',]); ?>
+                    <?php $form = ActiveForm::begin(['class'=>'form-horizontal', 'action' => ['/order/cart/make-order'], 'method' => 'post',]); ?>
 
                     <?= $form->field($userModel, 'fullname')->textInput(['maxlength' => true])->label(\Yii::t('user', 'full name')) ?>
                     <?= $form->field($userModel, 'email')->textInput(['maxlength' => true])->label(\Yii::t('user', 'email')) ?>

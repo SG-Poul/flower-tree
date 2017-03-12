@@ -17,11 +17,13 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'add to cart' => 'Add to cart',
-    'cart'        => 'Cart',
-    'price'       => 'Price',
-    'quantity'    => 'Quantity',
-    'delete'      => 'Delete',
-    'total price' => 'Total order price',
-    'make order'  => 'Make order',
+    'add to cart'    => 'Add to cart',
+    'cart'           => 'Cart',
+    'price'          => 'Price',
+    'quantity'       => 'Quantity',
+    'delete'         => 'Delete',
+    'total price'    => 'Total order price',
+    'make order'     => 'Make order',
+    'order no'       => 'Order No. ',
+    'order success'  => 'Your order is registered. Our manager will contact you soon.',
 ];

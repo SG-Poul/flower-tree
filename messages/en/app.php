@@ -21,6 +21,8 @@ return [
     'price'            => 'Price',
     'search name'      => 'Search by name',
     'search'           => 'Search',
+    // general
+    'server error'     => 'Server error. Please try again',
 
 
 ];

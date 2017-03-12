@@ -2,6 +2,8 @@
 
 namespace app\modules\order\models;
 
+use app\modules\product\models\Products;
+use app\modules\user\models\UserDB as User;
 use Yii;
 
 /**

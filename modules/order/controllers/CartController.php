@@ -8,6 +8,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use app\modules\product\models\Products;
 use app\modules\user\models\UserDB;
+use app\modules\order\models\Order;
+use yii\web\ServerErrorHttpException;
 
 /**
  * Default controller for the `Order` module
@@ -73,7 +75,29 @@ class CartController extends Controller
 
     public function actionMakeOrder()
     {
-        return 'ok';
+        $userModel = $this->findUser();
+        $orderName = '';
+        if ($userModel->load(Yii::$app->request->post()) && $userModel->save()) {
+            foreach (Yii::$app->cart->positions as $position) { // TODO: add transactions
+                $orderModel = new Order();
+                $orderModel->user_id = $userModel->id;
+                $orderModel->product_id = $position->id;
+                $orderModel->quantity = $position->quantity;
+                $orderModel->time = time();
+                $orderModel->status = 0;
+                $orderModel->order_No = $userModel->id . '-' . time();
+                $orderName = $userModel->id . '-' . time();
+                if ($orderModel->save()) {
+                    continue;
+                } else {
+                    throw new ServerErrorHttpException(\Yii::t('app', 'server error'));
+                }
+            }
+            Yii::$app->cart->removeAll();
+            return $this->render('success', [
+                'orderName' => $orderName,
+            ]);
+        }
     }
 
     protected function findUser()
@@ -81,7 +105,7 @@ class CartController extends Controller
         if (($userModel = UserDB::findOne(Yii::$app->user->id)) !== null) {
             return $userModel;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new ServerErrorHttpException('');
         }
     }
 

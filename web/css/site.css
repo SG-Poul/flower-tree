@@ -75,12 +75,11 @@ body {
 .cart-description {
     display: inline-block;
     float:right;
-    overflow:hidden;
+    width: 250px;
     margin: 5px;
     height: 230px;
-    width: auto;
-    border: 1px solid crimson;
-    text-align: right;
+    text-align: center;
+    position:relative;
 }
 
 .photo-container-small {
@@ -97,8 +96,22 @@ body {
     padding-left: 0px;
 }
 
-.no-resize {
-    resize: none;
+.count-block {
+    display: block;
+    float: right;
+    margin-top: 10px;
+    position:absolute;
+    bottom: 40px;
+    right:  5px;
+}
+
+.delete-btn {
+    display: block;
+    float: right;
+    margin-top: 10px;
+    position:absolute;
+    bottom: 0px;
+    right:  5px;
 }
 
 .wrap {

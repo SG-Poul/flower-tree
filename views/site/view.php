@@ -47,7 +47,7 @@ if ($language == 'uk') {
             </p>
             <span class="glyphicon glyphicon-tag product-price" aria-hidden="true"> <?= $model->price ?> <?= \Yii::t('app', 'UAH')?> </span>
             <?php $form = ActiveForm::begin(['class'=>'form-horizontal', 'action'=>Url::toRoute(['order/cart/add-to-cart','id'=>$model->id])]); ?>
-            <?= Html::submitButton(\Yii::t('order', 'add to cart')) ?>
+            <?= Html::submitButton(\Yii::t('order', 'add to cart'),['class'=>'btn btn-defaut']) // TODO: improve btn?>
             <?php ActiveForm::end(); ?>
 
         </div>
