@@ -23,7 +23,8 @@
         "kartik-v/yii2-slider": "*",
         "bluezed/yii2-scroll-top": "*",
         "lajax/yii2-language-picker": "1.*",
-        "yii2mod/yii2-comments": "*"
+        "yii2mod/yii2-comments": "*",
+        "omnilight/yii2-shopping-cart": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -66,6 +66,7 @@ $config = [
                 'login'=>'user/default/login',
                 'logout'=>'user/default/logout',
                 'signup'=>'user/default/signup',
+                'cart'=>'order/cart',
             ],
         ],
         'authManager' => [
@@ -92,8 +93,16 @@ $config = [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@app/modules/commentModule/messages',
                 ],
+                'order' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/modules/order/messages',
+                ],
             ],
         ],
+        'cart' => [
+            'class' => 'yz\shoppingcart\ShoppingCart',
+            'cartId' => 'my_application_cart',
+        ]
     ],
     'modules' => [
         'product' => [
@@ -105,6 +114,10 @@ $config = [
         'commentModule' => [
             'class' => 'app\modules\commentModule\CommentModule',
         ],
+        'order' => [
+            'class' => 'app\modules\order\Order',
+        ],
+
         'comment' => [
             'class' => 'yii2mod\comments\Module',
 //            'commentModelClass' => 'app\modules\commentModule\models\commentModel',
@@ -131,8 +144,10 @@ $config = [
             'rbac/*',
             'gii/*',
             'product/*',
+            'order/*',
             'comments/*',
             'comment/*',
+            'debug/*',
             //TODO REMOVE
         ]
     ],

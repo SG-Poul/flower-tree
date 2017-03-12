@@ -6,6 +6,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 Yii::setAlias('@logout', 'user/default/logout');
@@ -54,6 +55,10 @@ if (\Yii::$app->user->can('adminPermission')) {
             'class' => 'navbar-inverse navbar-default',
         ],
     ]); ?>
+    <div class="navbar-text pull-right">
+        <?php $cartUrl = Url::to(['/cart']); ?>
+        <a href="<?= $cartUrl ?>"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+    </div>
     <div class="navbar-text pull-right">
         <?=
         \lajax\languagepicker\widgets\LanguagePicker::widget([

@@ -1,6 +1,8 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
@@ -44,6 +46,10 @@ if ($language == 'uk') {
                 ?>
             </p>
             <span class="glyphicon glyphicon-tag product-price" aria-hidden="true"> <?= $model->price ?> <?= \Yii::t('app', 'UAH')?> </span>
+            <?php $form = ActiveForm::begin(['class'=>'form-horizontal', 'action'=>Url::toRoute(['order/cart/add-to-cart','id'=>$model->id])]); ?>
+            <?= Html::submitButton(\Yii::t('order', 'add to cart')) ?>
+            <?php ActiveForm::end(); ?>
+
         </div>
         <br/>
         <?php

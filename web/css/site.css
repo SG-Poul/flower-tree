@@ -72,6 +72,17 @@ body {
     border-radius: 4px;
 }
 
+.cart-description {
+    display: inline-block;
+    float:right;
+    overflow:hidden;
+    margin: 5px;
+    height: 230px;
+    width: auto;
+    border: 1px solid crimson;
+    text-align: right;
+}
+
 .photo-container-small {
     border: 1px solid #2A2A2A;
     display: inline-block;

@@ -4,6 +4,8 @@ namespace app\modules\product\models;
 
 use Yii;
 use yii\helpers\Html;
+use yz\shoppingcart\CartPositionInterface;
+use yz\shoppingcart\CartPositionTrait;
 
 /**
  * This is the model class for table "products".
@@ -16,8 +18,9 @@ use yii\helpers\Html;
  * @property Description $description
  * @property Category $category
  */
-class Products extends \yii\db\ActiveRecord
+class Products extends \yii\db\ActiveRecord implements CartPositionInterface
 {
+    use CartPositionTrait;
     /**
      * @inheritdoc
      */
@@ -59,6 +62,24 @@ class Products extends \yii\db\ActiveRecord
             'descriptionEng_Description' => 'Eng Description',
             'price' => 'Price',
         ];
+    }
+
+//    public function getCartPosition()
+//    {
+//        return \Yii::createObject([
+//            'class' => 'app\modules\Ordermodels\ProductCartPosition',
+//            'id' => $this->id,
+//        ]);
+//    }
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
