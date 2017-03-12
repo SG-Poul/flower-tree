@@ -52,6 +52,7 @@ if ($language == 'uk') {
 
         echo \yii2mod\comments\widgets\Comment::widget([
             'model' => $model,
+            'commentView' => '@app/modules/commentModule/views/index'
         ]); ?>
     </div>
 

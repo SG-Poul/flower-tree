@@ -1,5 +1,4 @@
 <?php
-namespace app\messages\uk;
 
 return [
     // Main Layout

@@ -10,13 +10,13 @@ $config = [
 
     'controllerMap' => [
         'comments' => 'yii2mod\comments\controllers\ManageController',
-        // Also you can override some controller properties in following way:
 //        'comments' => [
 //            'class' => 'yii2mod\comments\controllers\ManageController',
 //            'searchClass' => [
 //                'class' => 'yii2mod\comments\models\search\CommentSearch',
 //                'pageSize' => 25
 //            ],
+//
 //            'indexView' => 'custom path to index view file',
 //            'updateView' => 'custom path to update view file',
 //        ],
@@ -90,7 +90,7 @@ $config = [
                 ],
                 'yii2mod.comments' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@yii2mod/comments/messages',
+                    'basePath' => '@app/modules/commentModule/messages',
                 ],
             ],
         ],
@@ -102,8 +102,12 @@ $config = [
         'user' => [
             'class' => 'app\modules\user\User',
         ],
+        'commentModule' => [
+            'class' => 'app\modules\commentModule\CommentModule',
+        ],
         'comment' => [
             'class' => 'yii2mod\comments\Module',
+//            'commentModelClass' => 'app\modules\commentModule\models\commentModel',
         ],
         'rbac' => [
             'class' => 'mdm\admin\Module',

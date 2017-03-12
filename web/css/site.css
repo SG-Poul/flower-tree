@@ -82,6 +82,10 @@ body {
     border-radius: 4px;
 }
 
+.comments .comment-details {
+    padding-left: 0px;
+}
+
 .wrap {
     min-height: 100%;
     height: auto;
