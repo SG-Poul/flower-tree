@@ -24,7 +24,8 @@
         "bluezed/yii2-scroll-top": "*",
         "lajax/yii2-language-picker": "1.*",
         "yii2mod/yii2-comments": "*",
-        "omnilight/yii2-shopping-cart": "*"
+        "omnilight/yii2-shopping-cart": "*",
+        "kop/yii2-scroll-pager": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

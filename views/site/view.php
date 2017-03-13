@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use yii\widgets\DetailView;
+use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\product\models\Products */
@@ -58,7 +59,24 @@ if ($language == 'uk') {
 
         echo \yii2mod\comments\widgets\Comment::widget([
             'model' => $model,
-            'commentView' => '@app/modules/commentModule/views/index'
+            'commentView' => '@app/modules/commentModule/views/index',
+            'dataProviderConfig' => [
+                'pagination' => [
+                    'pageSize' => 5,
+                ],
+            ],
+            'listViewConfig' => [
+                'emptyText' => Yii::t('app', 'No comments found.'),
+                'pager' => [
+                    'class' => \kop\y2sp\ScrollPager::className(),
+                    'container' => '.comments-list',
+                    'item' => '.comment',
+                    'triggerOffset'=>5,
+                    'noneLeftText'=>''
+//                    'paginationSelector' => '.pagination',
+//                    'triggerTemplate' => '<tr class="ias-trigger"><td colspan="100%" style="text-align: center"><a style="cursor: pointer">{text}</a></td></tr>',
+                ],
+            ]
         ]); ?>
     </div>
 

@@ -51,4 +51,5 @@ return [
     'Active' => 'Active',
     'Deleted' => 'Deleted',
     'Go Back' => 'Go Back',
+    'No comments found' => 'Be the first who leave comment.',
 ];
