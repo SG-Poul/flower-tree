@@ -22,17 +22,19 @@ $this->title = 'Flowertree';
                 <a href="<?= $url ?>" title="<?= $model->name?>" style="color: #2A2A2A">
                     <div class="product-container">
                         <div class="product-photo"><?= $model->MainPhotoIndex ?></div>
-                        <h4 style="text-align: center"><?php
-                            if ($language == 'uk') {
-                                echo $model->descriptionUkr_Name;
-                            } else if ($language == 'ru') {
-                                echo $model->descriptionRus_Name;
-                            } else if ($language == 'en') {
-                                echo $model->descriptionEng_Name;
-                            }
-                        ?> </h4>
-                        <span class="glyphicon glyphicon-comment product-comment" aria-hidden="true"> 0 </span>
-                        <span class="glyphicon glyphicon-tag product-price" aria-hidden="true"> <?= $model->price ?> <?= \Yii::t('app', 'UAH') ?> </span>
+                        <div class="product-description">
+                            <h4 style="text-align: center"><?php
+                                if ($language == 'uk') {
+                                    echo $model->descriptionUkr_Name;
+                                } else if ($language == 'ru') {
+                                    echo $model->descriptionRus_Name;
+                                } else if ($language == 'en') {
+                                    echo $model->descriptionEng_Name;
+                                }
+                                ?> </h4>
+                            <span class="glyphicon glyphicon-comment product-comment" aria-hidden="true"> 0 </span>
+                            <span class="glyphicon glyphicon-tag product-price" aria-hidden="true"> <?= $model->price ?> <?= \Yii::t('app', 'UAH') ?> </span>
+                        </div>
                     </div>
                 </a>
              <?php } ?>

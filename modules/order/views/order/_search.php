@@ -19,15 +19,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'user_id') ?>
 
-    <?= $form->field($model, 'product_id') ?>
-
-    <?= $form->field($model, 'quantity') ?>
+    <?= $form->field($model, 'order') ?>
 
     <?= $form->field($model, 'time') ?>
 
-    <?php // echo $form->field($model, 'status') ?>
+    <?= $form->field($model, 'status') ?>
 
-    <?php // echo $form->field($model, 'order_No') ?>
+    <?php // echo $form->field($model, 'notes') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

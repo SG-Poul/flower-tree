@@ -2,22 +2,20 @@
 
 namespace app\modules\order\models;
 
-use app\modules\product\models\Products;
 use app\modules\user\models\UserDB as User;
 use Yii;
+
 
 /**
  * This is the model class for table "order".
  *
  * @property integer $id
  * @property integer $user_id
- * @property integer $product_id
- * @property integer $quantity
+ * @property string $order
  * @property integer $time
  * @property integer $status
- * @property string $order_No
+ * @property string $notes
  *
- * @property Products $product
  * @property User $user
  */
 class Order extends \yii\db\ActiveRecord
@@ -36,10 +34,9 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'product_id'], 'required'],
-            [['user_id', 'product_id', 'quantity', 'time', 'status'], 'integer'],
-            [['order_No'], 'string', 'max' => 255],
-            [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Products::className(), 'targetAttribute' => ['product_id' => 'id']],
+            [['user_id', 'order'], 'required'],
+            [['user_id', 'time', 'status'], 'integer'],
+            [['order', 'notes'], 'string'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -52,20 +49,17 @@ class Order extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'user_id' => 'User ID',
-            'product_id' => 'Product ID',
-            'quantity' => 'Quantity',
+            'order' => 'Order',
             'time' => 'Time',
             'status' => 'Status',
-            'order_No' => 'Order  No',
-        ];
-    }
+            'notes' => 'Notes',
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProduct()
-    {
-        return $this->hasOne(Products::className(), ['id' => 'product_id']);
+            'userName'        => 'User name',
+            'userFullname'    => 'User fullname',
+            'userEmail'       => 'User email',
+            'userPhone'       => 'User phone',
+            'userAddress'     => 'User address',
+        ];
     }
 
     /**
@@ -74,5 +68,48 @@ class Order extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public function getUserName()
+    {
+        return $this->user->username;
+    }
+
+    public function getUserFullname()
+    {
+        return $this->user->fullname;
+    }
+
+    public function getUserEmail()
+    {
+        return $this->user->email;
+    }
+
+    public function getUserPhone()
+    {
+        return $this->user->phone;
+    }
+
+    public function getUserAddress()
+    {
+        return $this->user->address;
+    }
+
+    public function getStatusName()
+    {
+        switch ($this->status) {
+            case 0:
+                return \Yii::t('order', 'status pending');
+                break;
+            case 1:
+                return \Yii::t('order', 'status in progress');
+                break;
+            case 2:
+                return \Yii::t('order', 'status ready');
+                break;
+            case 3:
+                return \Yii::t('order', 'status closed');
+                break;
+        }
     }
 }

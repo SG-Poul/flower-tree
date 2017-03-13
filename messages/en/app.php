@@ -23,6 +23,7 @@ return [
     'search'           => 'Search',
     // general
     'server error'     => 'Server error. Please try again',
-
+    'delete'           => 'Delete',
+    'delete confitm'   => 'Are you sure you want to delete this item?',
 
 ];

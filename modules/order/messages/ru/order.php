@@ -17,13 +17,23 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'add to cart'    => 'Добавить в корзину',
-    'cart'           => 'Корзина',
-    'price'          => 'Цена',
-    'quantity'       => 'Количество',
-    'delete'         => 'Удалить',
-    'total price'    => 'Общая стоимость заказа',
-    'make order'     => 'Оформить заказ',
-    'order no'       => 'Заказ № ',
-    'order success'  => 'Ваш заказ принят. Наш менеджер скоро с Вами свяжется.',
+    'add to cart'           => 'Добавить в корзину',
+    'cart'                  => 'Корзина',
+    'price'                 => 'Цена',
+    'quantity'              => 'Количество',
+    'delete'                => 'Удалить',
+    'total price'           => 'Общая стоимость заказа',
+    'make order'            => 'Оформить заказ',
+    'order no'              => 'Заказ № ',
+    'order success'         => 'Ваш заказ принят. Наш менеджер скоро с Вами свяжется.',
+    'orders'                => 'Заказы',
+    'status pending'        => 'В ожидании',
+    'status in progress'    => 'В работе',
+    'status ready'          => 'Готов',
+    'status closed'         => 'Закрыт',
+    'status'                => 'Статус',
+    'open'                  => 'Открыть',
+    'time'                  => 'Время заказа',
+    'product name'          => 'Наименование Товара',
+
 ];

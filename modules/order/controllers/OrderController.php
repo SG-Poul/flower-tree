@@ -5,6 +5,7 @@ namespace app\modules\order\controllers;
 use Yii;
 use app\modules\order\models\Order;
 use app\modules\order\models\OrderSearch;
+use app\modules\product\models\Products;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,10 +36,25 @@ class OrderController extends Controller
      */
     public function actionIndex()
     {
+//        $searchModel = new OrderSearch();
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+//
+//        return $this->render('index', [
+//            'searchModel' => $searchModel,
+//            'dataProvider' => $dataProvider,
+//        ]);
+    }
+
+    /**
+     * Lists all Order models.
+     * @return mixed
+     */
+    public function actionAdmin()
+    {
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+        return $this->render('admin', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -49,19 +65,39 @@ class OrderController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($id) //todo check access
     {
+        $model = $this->findModel($id);
+        $productModels = [];
+        $quantity = [];
+        $separatedOrders = explode("+", $model->order);
+        foreach ($separatedOrders as $order) {
+            $orderDetails = explode("-", $order);
+            if ($orderDetails[0] <= 0) break;
+//            echo '<p>INFO: id ' . $orderDetails[0] . '</p>';
+//            echo '<p>INFO: count ' . $orderDetails[1] . '</p>';
+//            echo '<p>---------</p>';
+            $productModels[] = $this->findProductsModel($orderDetails[0]);
+            $quantity[$orderDetails[0]] = $orderDetails[1];
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'productModels' => $productModels,
+            'quantity' => $quantity,
         ]);
     }
 
-    /**
-     * Creates a new Order model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
+    public function actionChangeStatus($id, $status) //todo check access
+    {
+        $model = $this->findModel($id);
+        $model->status = $status;
+        if ($model->save()) {
+            $this->redirect('admin');
+        }
+    }
+
+    /*public function actionCreate()
     {
         $model = new Order();
 
@@ -72,7 +108,7 @@ class OrderController extends Controller
                 'model' => $model,
             ]);
         }
-    }
+    }*/
 
     /**
      * Updates an existing Order model.
@@ -82,15 +118,15 @@ class OrderController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
+//        $model = $this->findModel($id);
+//
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        } else {
+//            return $this->render('update', [
+//                'model' => $model,
+//            ]);
+//        }
     }
 
     /**
@@ -116,6 +152,15 @@ class OrderController extends Controller
     protected function findModel($id)
     {
         if (($model = Order::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    protected function findProductsModel($id)
+    {
+        if (($model = Products::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

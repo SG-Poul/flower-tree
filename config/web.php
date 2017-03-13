@@ -67,7 +67,7 @@ $config = [
                 'logout'=>'user/default/logout',
                 'signup'=>'user/default/signup',
                 'cart'=>'order/cart',
-                'orders'=>'order/order',
+                'orders'=>'order/order/admin',
             ],
         ],
         'authManager' => [

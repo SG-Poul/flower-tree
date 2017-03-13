@@ -23,7 +23,7 @@ class CartController extends Controller
     public function actionIndex()
     {
         if (Yii::$app->user->isGuest) {
-            return $this->redirect(['login']);
+            return $this->redirect(['/login']);
         }
 
         $positions = [];
@@ -75,28 +75,27 @@ class CartController extends Controller
 
     public function actionMakeOrder()
     {
+        // TODO: add notes
         $userModel = $this->findUser();
         $orderName = '';
+        $order = '';
         if ($userModel->load(Yii::$app->request->post()) && $userModel->save()) {
             foreach (Yii::$app->cart->positions as $position) { // TODO: add transactions
-                $orderModel = new Order();
-                $orderModel->user_id = $userModel->id;
-                $orderModel->product_id = $position->id;
-                $orderModel->quantity = $position->quantity;
-                $orderModel->time = time();
-                $orderModel->status = 0;
-                $orderModel->order_No = $userModel->id . '-' . time();
-                $orderName = $userModel->id . '-' . time();
-                if ($orderModel->save()) {
-                    continue;
-                } else {
-                    throw new ServerErrorHttpException(\Yii::t('app', 'server error'));
-                }
+                $order .= $position->id . '-' . $position->quantity . '+';
             }
-            Yii::$app->cart->removeAll();
-            return $this->render('success', [
-                'orderName' => $orderName,
-            ]);
+            $orderModel = new Order();
+            $orderModel->user_id = $userModel->id;
+            $orderModel->order = $order;
+            $orderModel->time = time();
+            $orderModel->status = 0;
+            if ($orderModel->save()) {
+                Yii::$app->cart->removeAll();
+                return $this->render('success', [
+                    'orderId' => $orderModel->id,
+                ]);
+            } else {
+                throw new ServerErrorHttpException(\Yii::t('app', 'server error'));
+            }
         }
     }
 

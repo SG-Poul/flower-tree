@@ -6,7 +6,7 @@
  * Time: 21:26
  */
 // TODO: improve style
-$this->title = \Yii::t('order', 'order no') . $orderName;
+$this->title = \Yii::t('order', 'order no') . $orderId;
 ?>
 
 <div class="wall">
@@ -14,6 +14,6 @@ $this->title = \Yii::t('order', 'order no') . $orderName;
         <?= \Yii::t('order', 'order success') ?>
     </h1>
     <h2 style="text-align: center">
-        <?= \Yii::t('order', 'order no') . $orderName ?>
+        <?= \Yii::t('order', 'order no') . $orderId ?>
     </h2>
 </div>

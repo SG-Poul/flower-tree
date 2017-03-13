@@ -14,15 +14,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'user_id')->textInput() ?>
 
-    <?= $form->field($model, 'product_id')->textInput() ?>
-
-    <?= $form->field($model, 'quantity')->textInput() ?>
+    <?= $form->field($model, 'order')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'time')->textInput() ?>
 
     <?= $form->field($model, 'status')->textInput() ?>
 
-    <?= $form->field($model, 'order_No')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'notes')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
