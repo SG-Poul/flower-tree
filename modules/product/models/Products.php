@@ -140,19 +140,19 @@ class Products extends \yii\db\ActiveRecord implements CartPositionInterface
 
     public function getMainPhoto()
     {
-        if (file_exists('assets/products/id-' . $this->id . '-1.png')) {
-            return Html::img('@web/assets/products/id-' . $this->id . '-1.png', ['class' => 'thumbnail img-responsive']);
+        if (file_exists('img/products/id-' . $this->id . '-1.png')) {
+            return Html::img('@web/img/products/id-' . $this->id . '-1.png', ['class' => 'thumbnail img-responsive']);
         } else {
-            return Html::img('@web/assets/products/no-image.png', ['class' => 'thumbnail img-responsive']);
+            return Html::img('@web/img/products/no-image.png', ['class' => 'thumbnail img-responsive']);
         }
     }
 
     public function getMainPhotoIndex()
     {
-        if (file_exists('assets/products/id-' . $this->id . '-1.png')) {
-            return Html::img('@web/assets/products/id-' . $this->id . '-1.png', ['class' => 'img-responsive']);
+        if (file_exists('img/products/id-' . $this->id . '-1.png')) {
+            return Html::img('@web/img/products/id-' . $this->id . '-1.png', ['class' => 'img-responsive']);
         } else {
-            return Html::img('@web/assets/products/no-image.png', ['class' => 'img-responsive']);
+            return Html::img('@web/img/products/no-image.png', ['class' => 'img-responsive']);
         }
     }
 
@@ -161,13 +161,13 @@ class Products extends \yii\db\ActiveRecord implements CartPositionInterface
         $images = [];
         $imageCount = 1;
 
-        while (file_exists('assets/products/id-' . $this->id . '-' . $imageCount . '.png')) {
-            $images[] = Html::img('@web/assets/products/id-' . $this->id . '-' . $imageCount . '.png', ['class' => 'img-responsive img-modal']);
+        while (file_exists('img/products/id-' . $this->id . '-' . $imageCount . '.png')) {
+            $images[] = Html::img('@web/img/products/id-' . $this->id . '-' . $imageCount . '.png', ['class' => 'img-responsive img-modal']);
             $imageCount++;
         }
 
         if ($imageCount == 1) {
-            $images[] = Html::img('@web/assets/products/no-image.png', ['class' => 'img-responsive']);
+            $images[] = Html::img('@web/img/products/no-image.png', ['class' => 'img-responsive']);
         }
 
         return $images;

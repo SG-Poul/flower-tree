@@ -1,5 +1,6 @@
 <?php
 
+use app\modules\order\widgets\CartWidget;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -50,3 +51,4 @@ $this->title = 'Flowertree';
     </div>
 
 </div>
+<?= CartWidget::widget() ?>

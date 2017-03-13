@@ -35,4 +35,5 @@ return [
     'open'                  => 'Open',
     'time'                  => 'Order time',
     'product name'          => 'Product name',
+    'in cart'               => 'In cart',
 ];

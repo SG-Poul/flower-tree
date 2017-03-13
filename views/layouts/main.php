@@ -56,10 +56,6 @@ if (\Yii::$app->user->can('adminPermission')) {
         ],
     ]); ?>
     <div class="navbar-text pull-right">
-        <?php $cartUrl = Url::to(['/cart']); ?>
-        <a href="<?= $cartUrl ?>"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
-    </div>
-    <div class="navbar-text pull-right">
         <?=
         \lajax\languagepicker\widgets\LanguagePicker::widget([
             'skin' => \lajax\languagepicker\widgets\LanguagePicker::SKIN_DROPDOWN,

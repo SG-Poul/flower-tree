@@ -1,5 +1,6 @@
 <?php
 
+use app\modules\order\widgets\CartWidget;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
@@ -48,9 +49,18 @@ if ($language == 'uk') {
             </p>
             <span class="glyphicon glyphicon-tag product-price" aria-hidden="true"> <?= $model->price ?> <?= \Yii::t('app', 'UAH')?> </span>
             <br/>
-            <?php $form = ActiveForm::begin(['class'=>'form-horizontal', 'action'=>Url::toRoute(['order/cart/add-to-cart','id'=>$model->id])]); ?>
-            <?= Html::submitButton(\Yii::t('order', 'add to cart'),['class'=>'btn btn-success btn-large']) // TODO: improve btn?>
-            <?php ActiveForm::end(); ?>
+            <?php if (Yii::$app->cart->hasPosition($model->id)){ ?>
+                <?php $form = ActiveForm::begin(['class'=>'form-horizontal', 'action'=>Url::toRoute(['order/cart/delete-from-cart','id'=>$model->id])]); ?>
+                <?= Html::submitButton(\Yii::t('order', 'in cart') . ' <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>',['class'=>'btn btn-success btn-large disable']) // TODO: improve btn?>
+                <?php ActiveForm::end(); ?>
+            <?php } else { ?>
+                <?php $form = ActiveForm::begin(['class'=>'form-horizontal', 'action'=>Url::toRoute(['order/cart/add-to-cart','id'=>$model->id])]); ?>
+                <?= Html::submitButton(\Yii::t('order', 'add to cart') . ' <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>',['class'=>'btn btn-success btn-large']) // TODO: improve btn?>
+                <?php ActiveForm::end(); ?>
+            <?php } ?>
+
+
+
 
         </div>
         <br/>
@@ -105,3 +115,4 @@ JS;
     ?>
 
 </div>
+<?= CartWidget::widget() ?>

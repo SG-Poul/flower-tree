@@ -22,6 +22,10 @@ class CartController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->cart->getCount() == 0) {
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['/login']);
         }
@@ -32,7 +36,11 @@ class CartController extends Controller
         foreach (Yii::$app->cart->positions as $position) {
             $model = Products::findOne($position->id);
             $models[$position->id] = $model;
-            $photo = Html::img('@web/assets/products/id-' . $position->id . '-1.png', ['class' => 'img-responsive']);
+            if (file_exists('img/products/id-' . $position->id . '-1.png')) {
+                $photo = Html::img('@web/img/products/id-' . $position->id . '-1.png', ['class' => 'thumbnail img-responsive']);
+            } else {
+                $photo = Html::img('@web/img/products/no-image.png', ['class' => 'thumbnail img-responsive']);
+            }
             $positions[] = $position;
             $photos[$position->id] = $photo;
         }
@@ -54,7 +62,7 @@ class CartController extends Controller
         $model = Products::findOne($id);
         if ($model) {
             $cart->put($model, 1);
-            return $this->redirect(['index']);
+            return $this->redirect(Yii::$app->request->referrer);
         }
         throw new NotFoundHttpException();
     }
@@ -64,13 +72,13 @@ class CartController extends Controller
         $position = Yii::$app->cart->getPositionById($id);
         $quantity = $position->quantity + $value;
         Yii::$app->cart->update($position, $quantity);
-        return $this->redirect(['index']);
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     public function actionDeleteFromCart($id)
     {
         Yii::$app->cart->removeById($id);
-        return $this->redirect(['index']);
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     public function actionMakeOrder()

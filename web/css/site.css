@@ -42,6 +42,15 @@ body {
     margin: 0 2px 20px;
     padding-bottom: 10px;
     border-radius: 4px;
+    box-shadow:none;
+}
+
+.product-container:hover, .product-container:active {
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    box-shadow: 0 0 20px blue;
 }
 
 .product-photo {
@@ -113,6 +122,38 @@ body {
     position:absolute;
     bottom: 0px;
     right:  5px;
+}
+
+.cart-widget-block {
+    position: fixed;
+    top: 70px;
+    right: 40px;
+    width: 100px;
+    height: 100px;
+}
+
+.cart-widget-count {
+    position: relative;
+    top: -85px;
+    right: -75px;
+    color: white;
+    /*border-radius: 50%;*/
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+    font: 20px Arial, sans-serif;
+    font-weight: bold;
+
+    background: red;
+    /*border: 4px solid black;*/
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    /*color: #ffffff;*/
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 5px;
+    text-align: center;
+    width: 1.6em;
 }
 
 .wrap {

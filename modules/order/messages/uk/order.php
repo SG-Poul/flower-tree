@@ -17,7 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'add to cart'           => 'Додати в корзину',
+    'add to cart'           => 'Додати в кошик',
     'cart'                  => 'Кошик',
     'price'                 => 'Ціна',
     'quantity'              => 'Кількість',
@@ -35,4 +35,5 @@ return [
     'open'                  => 'Відкрити',
     'time'                  => 'Час замовлення',
     'product name'          => 'Найменування товару',
+    'in cart'               => 'В кошику',
 ];

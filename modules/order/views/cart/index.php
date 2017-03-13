@@ -35,9 +35,9 @@ $this->title = \Yii::t('order', 'cart');
                         <div class="btn-group count-block" role="group" aria-label="...">
                             <?php $form = ActiveForm::begin(['class'=>'form-horizontal', 'action' => ['/order/cart/change-quantity'], 'method' => 'get',]); ?>
                             <?= Html::hiddenInput('id', $position->id); ?>
-                            <?= Html::submitButton('<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>', ['name' => 'value', 'value' => -1, 'class' => 'btn btn-default btn-lg']); ?>
-                            <?= Html::button(\Yii::t('order', 'quantity') . ' : ' . $position->quantity, ['class' => 'btn btn-default btn-lg disabled ']) ?>
-                            <?= Html::submitButton('<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>', ['name' => 'value', 'value' => 1,  'class' => 'btn btn-default btn-lg']); ?>
+                            <?= Html::submitButton('<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>', ['name' => 'value', 'value' => -1, 'class' => 'btn btn-default']); ?>
+                            <?= Html::button(\Yii::t('order', 'quantity') . ' : ' . $position->quantity, ['class' => 'btn btn-default disabled ']) ?>
+                            <?= Html::submitButton('<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>', ['name' => 'value', 'value' => 1,  'class' => 'btn btn-default']); ?>
                             <?php ActiveForm::end();
                             // TODO: block btn if count is 1
                             ?>

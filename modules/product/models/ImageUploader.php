@@ -20,12 +20,12 @@ class ImageUploader extends Model
         if ($this->validate()) {
             $imageCount = 1;
             foreach ($this->uploadedFiles as $file) {
-                while (file_exists('assets/products/id-' . $productId . '-' . $imageCount . '.png')) $imageCount++;
+                while (file_exists('img/products/id-' . $productId . '-' . $imageCount . '.png')) $imageCount++;
 
                 if ($file->extension == 'png') {
-                    $file->saveAs('assets/products/id-' . $productId . '-' . $imageCount . '.png');
+                    $file->saveAs('img/products/id-' . $productId . '-' . $imageCount . '.png');
                 } else if ($file->error == UPLOAD_ERR_OK) {
-                    imagepng(imagecreatefromstring(file_get_contents($file->tempName)), 'assets/products/id-' . $productId . '-' . $imageCount . '.png', 9, PNG_ALL_FILTERS);
+                    imagepng(imagecreatefromstring(file_get_contents($file->tempName)), 'img/products/id-' . $productId . '-' . $imageCount . '.png', 9, PNG_ALL_FILTERS);
                 }
             }
             return true;
@@ -39,13 +39,13 @@ class ImageUploader extends Model
         $images = [];
         $imageCount = 1;
 
-        while (file_exists('assets/products/id-' . $productId . '-' . $imageCount . '.png')) {
-            $images[] = Html::img('@web/assets/products/id-' . $productId . '-' . $imageCount . '.png', ['class' => 'img-responsive img-modal']);
+        while (file_exists('img/products/id-' . $productId . '-' . $imageCount . '.png')) {
+            $images[] = Html::img('@web/img/products/id-' . $productId . '-' . $imageCount . '.png', ['class' => 'img-responsive img-modal']);
             $imageCount++;
         }
 
         if ($imageCount == 1) {
-            $images[] = Html::img('@web/assets/products/no-image.png', ['class' => 'img-responsive']);
+            $images[] = Html::img('@web/img/products/no-image.png', ['class' => 'img-responsive']);
         }
 
         return $images;
@@ -53,15 +53,15 @@ class ImageUploader extends Model
 
     public function deleteImage($imageName) // TODO Check if secure
     {
-        unlink('assets/products/' . $imageName);
+        unlink('img/products/' . $imageName);
         $count = explode("-", $imageName);
         $productId = $count[1];
         $imageCount = explode(".", $count[2]);
         $imageCount = $imageCount[0];
         $imageCount++;
-        while (file_exists('assets/products/id-' . $productId . '-' . $imageCount . '.png')) {
+        while (file_exists('img/products/id-' . $productId . '-' . $imageCount . '.png')) {
             $newName = strval($imageCount - 1);
-            rename('assets/products/id-' . $productId . '-' . $imageCount . '.png', 'assets/products/id-' . $productId . '-' . $newName . '.png');
+            rename('img/products/id-' . $productId . '-' . $imageCount . '.png', 'img/products/id-' . $productId . '-' . $newName . '.png');
             $imageCount++;
         }
     }
@@ -69,8 +69,8 @@ class ImageUploader extends Model
     public function deleteAllImages($id) // TODO Check if secure
     {
         $imageCount = 1;
-        while (file_exists('assets/products/id-' . $id . '-' . $imageCount . '.png')) {
-            unlink('assets/products/id-' . $id . '-' . $imageCount . '.png');
+        while (file_exists('img/products/id-' . $id . '-' . $imageCount . '.png')) {
+            unlink('img/products/id-' . $id . '-' . $imageCount . '.png');
             $imageCount++;
         }
     }
@@ -82,8 +82,8 @@ class ImageUploader extends Model
         $imageCount = explode(".", $count[2]);
         $imageCount = $imageCount[0];
 
-        rename('assets/products/id-' . $productId . '-1.png', 'assets/products/id-' . $productId . '-tmp.png');
-        rename('assets/products/id-' . $productId . '-' . $imageCount . '.png', 'assets/products/id-' . $productId . '-1.png');
-        rename('assets/products/id-' . $productId . '-tmp.png', 'assets/products/id-' . $productId . '-' . $imageCount . '.png');
+        rename('img/products/id-' . $productId . '-1.png', 'img/products/id-' . $productId . '-tmp.png');
+        rename('img/products/id-' . $productId . '-' . $imageCount . '.png', 'img/products/id-' . $productId . '-1.png');
+        rename('img/products/id-' . $productId . '-tmp.png', 'img/products/id-' . $productId . '-' . $imageCount . '.png');
     }
 }

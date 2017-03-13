@@ -139,7 +139,7 @@ class ProductsController extends Controller
             $modelDescription->ukr_Description = $request['descriptionUkr_Description'];
             $modelDescription->rus_Description = $request['descriptionRus_Description'];
             $modelDescription->eng_Description = $request['descriptionEng_Description'];
-            if ($uploadModel->upload($model->id && $modelDescription->save())) {
+            if ($uploadModel->upload($id) && $modelDescription->save()) {
                 return $this->redirect(['update', 'id' => $model->id]);
             }
         } else {
