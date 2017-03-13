@@ -23,7 +23,12 @@ class CartController extends Controller
     public function actionIndex()
     {
         if (Yii::$app->cart->getCount() == 0) {
-            return $this->redirect(Yii::$app->request->referrer);
+            if ( Yii::$app->request->referrer == 'http://flower-tree/web/cart') { // TODO: amend
+                return $this->redirect(Yii::$app->homeUrl);
+            } else {
+                return $this->redirect(Yii::$app->request->referrer);
+            }
+//
         }
 
         if (Yii::$app->user->isGuest) {
