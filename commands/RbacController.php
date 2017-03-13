@@ -30,10 +30,14 @@ class RbacController extends Controller
         $adminPermission = $auth->createPermission('adminPermission');
         $adminProductRoute = $auth->createPermission('/product/*');
         $adminUserRoute = $auth->createPermission('/user/admin/*');
+        $adminCommentsRoute = $auth->createPermission('/comments/*');
+        $adminOrderRoute = $auth->createPermission('/order/*');
         $adminPermission->description = 'Admin rights';
         $auth->add($adminPermission);
         $auth->add($adminProductRoute);
         $auth->add($adminUserRoute);
+        $auth->add($adminCommentsRoute);
+        $auth->add($adminOrderRoute);
 
         // add "user" role and give this role the "userPermission" permission
         $user = $auth->createRole('user');
@@ -48,6 +52,8 @@ class RbacController extends Controller
         $auth->addChild($admin, $adminPermission);
         $auth->addChild($admin, $adminProductRoute);
         $auth->addChild($admin, $adminUserRoute);
+        $auth->addChild($admin, $adminCommentsRoute);
+        $auth->addChild($admin, $adminOrderRoute);
         $auth->addChild($admin, $user);
     }
 }

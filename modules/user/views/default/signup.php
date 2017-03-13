@@ -13,7 +13,7 @@ $this->title = \Yii::t('user', 'sign up');
     <?= Html::errorSummary($model) ?>
     <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
     <?= $form->field($model, 'username')->label(\Yii::t('user', 'username')) ?>
-    <?= $form->field($model, 'email')->label(\Yii::t('user', 'username')) ?>
+    <?= $form->field($model, 'email')->label(\Yii::t('user', 'email')) ?>
     <?= $form->field($model, 'password')->passwordInput()->label(\Yii::t('user', 'password')) ?>
     <?= Html::submitButton(\Yii::t('user', 'Create account'), ['class' => 'btn btn-primary btn-block', 'name' => 'signup-button']) ?>
     <?php ActiveForm::end(); ?>

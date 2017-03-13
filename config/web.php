@@ -10,16 +10,6 @@ $config = [
 
     'controllerMap' => [
         'comments' => 'yii2mod\comments\controllers\ManageController',
-//        'comments' => [
-//            'class' => 'yii2mod\comments\controllers\ManageController',
-//            'searchClass' => [
-//                'class' => 'yii2mod\comments\models\search\CommentSearch',
-//                'pageSize' => 25
-//            ],
-//
-//            'indexView' => 'custom path to index view file',
-//            'updateView' => 'custom path to update view file',
-//        ],
     ],
 
     'components' => [
@@ -145,15 +135,14 @@ $config = [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
             'site/*',
-            'user/*',
-            'rbac/*',
-            'gii/*',
-            'product/*',
-            'order/*',
-            'comments/*',
+            'user/default/*',
+            'order/cart/*',
             'comment/*',
-            'debug/*',
-            //TODO REMOVE
+//          'product/*',
+//          'comments/*',
+//          'debug/*',
+//          'rbac/*',
+//          'gii/*',
         ]
     ],
     'params' => $params,

@@ -34,7 +34,9 @@ class DefaultController extends Controller
         $model = $this->findModel();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['profile']);
+            return $this->render('profile', [
+                'model' => $model,
+            ]);
         } else {
             return $this->render('profile', [
                 'model' => $model,

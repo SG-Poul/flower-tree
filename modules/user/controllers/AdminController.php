@@ -2,6 +2,7 @@
 
 namespace app\modules\user\controllers;
 
+use mdm\admin\models\Assignment;
 use Yii;
 use app\modules\user\models\UserDB;
 use app\modules\user\models\UserDBSearch;
@@ -103,6 +104,13 @@ class AdminController extends Controller
     {
         $this->findModel($id)->delete();
 
+        return $this->redirect(['index']);
+    }
+
+    public function actionGiveAdmin($id) {
+        $rbac = Yii::$app->getAuthManager();
+        $adminRole = $rbac->getRole('admin');
+        $rbac->assign($adminRole, $id);
         return $this->redirect(['index']);
     }
 

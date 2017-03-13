@@ -47,16 +47,14 @@ if ($language == 'uk') {
                 ?>
             </p>
             <span class="glyphicon glyphicon-tag product-price" aria-hidden="true"> <?= $model->price ?> <?= \Yii::t('app', 'UAH')?> </span>
+            <br/>
             <?php $form = ActiveForm::begin(['class'=>'form-horizontal', 'action'=>Url::toRoute(['order/cart/add-to-cart','id'=>$model->id])]); ?>
-            <?= Html::submitButton(\Yii::t('order', 'add to cart'),['class'=>'btn btn-defaut']) // TODO: improve btn?>
+            <?= Html::submitButton(\Yii::t('order', 'add to cart'),['class'=>'btn btn-success btn-large']) // TODO: improve btn?>
             <?php ActiveForm::end(); ?>
 
         </div>
         <br/>
         <?php
-        // the model to which are added comments, for example:
-        //            $model = Post::find()->where(['title' => 'some post title'])->one();
-
         echo \yii2mod\comments\widgets\Comment::widget([
             'model' => $model,
             'commentView' => '@app/modules/commentModule/views/index',
@@ -73,11 +71,14 @@ if ($language == 'uk') {
                     'item' => '.comment',
                     'triggerOffset'=>5,
                     'noneLeftText'=>''
-//                    'paginationSelector' => '.pagination',
-//                    'triggerTemplate' => '<tr class="ias-trigger"><td colspan="100%" style="text-align: center"><a style="cursor: pointer">{text}</a></td></tr>',
                 ],
             ]
-        ]); ?>
+        ]);
+
+        if (Yii::$app->user->isGuest) {
+            echo '<div class="well"><h4 style="text-align: center">'. \Yii::t('yii2mod.comments', 'sign up') .'</h4></div>';
+        }
+        ?>
     </div>
 
     <div tabindex="-1" class="modal fade" id="myModal" role="dialog">

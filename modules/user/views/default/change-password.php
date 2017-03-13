@@ -13,14 +13,10 @@ $this->title = \Yii::t('user', 'Change Password');
 
     <p><?= \Yii::t('user', 'Please fill out the following fields to change password:') ?> </p>
 
-    <div class="row">
-        <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'form-change']); ?>
                 <?= $form->field($model, 'oldPassword')->passwordInput()->label(\Yii::t('user', 'old Password')) ?>
                 <?= $form->field($model, 'newPassword')->passwordInput()->label(\Yii::t('user', 'new Password')) ?>
                 <?= $form->field($model, 'retypePassword')->passwordInput()->label(\Yii::t('user', 'retype Password')) ?>
                <?= Html::submitButton(\Yii::t('user', 'Change'), ['class' => 'btn btn-primary btn-block', 'name' => 'change-button']) ?>
             <?php ActiveForm::end(); ?>
-        </div>
-    </div>
 </div>

@@ -52,4 +52,5 @@ return [
     'Deleted' => 'Deleted',
     'Go Back' => 'Go Back',
     'No comments found' => 'Be the first who leave comment.',
+    'sign up' => 'Please sign in to leave comment',
 ];
