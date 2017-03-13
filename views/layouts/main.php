@@ -27,7 +27,7 @@ if (\Yii::$app->user->can('adminPermission')) {
 } else {
     $dropdownMenu = [
         ['label' => \Yii::t('app', 'Profile'),            'url' => '/web/user'],
-        ['label' => \Yii::t('app', 'Orders'),             'url' => '#'],
+        ['label' => \Yii::t('app', 'Orders'),             'url' => '/web/order'],
         ['label' => \Yii::t('app', 'Change password'),    'url' => '/web/user/default/change-password'],
         ['label' => \Yii::t('app', 'Logout'),             'url' => ['/logout'], ['data' => ['method' => 'post']]],
     ];

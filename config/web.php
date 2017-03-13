@@ -58,6 +58,7 @@ $config = [
                 'signup'=>'user/default/signup',
                 'cart'=>'order/cart',
                 'orders'=>'order/order/admin',
+                'order'=>'order/order/user',
             ],
         ],
         'authManager' => [
@@ -138,6 +139,7 @@ $config = [
             'user/default/*',
             'order/cart/*',
             'comment/*',
+            'order/order/user'
 //          'product/*',
 //          'comments/*',
 //          'debug/*',
