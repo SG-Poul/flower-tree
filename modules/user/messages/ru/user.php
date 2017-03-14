@@ -43,4 +43,5 @@ return [
     'Save'                                                        => 'Сохранить',
     'Please choose your new password:'                            => 'Пожалуйста, введите новый пароль:',
     'Create account'                                              => 'Создать аккаунт',
+    'Users'                                                       => 'Пользователи',
 ];

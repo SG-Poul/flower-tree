@@ -42,11 +42,21 @@ class ProductsController extends Controller
         $searchModel = new ProductsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $language = \Yii::$app->language;
+        $loc = '';
+        if ($language == 'uk') {
+            $loc = 'ukr';
+        } else if ($language == 'ru') {
+            $loc = 'rus';
+        } else if ($language == 'en') {
+            $loc = 'eng';
+        }
+
         $categories = [];
         $categoriesName = [];
         foreach (Category::find()->asArray()->indexBy('id')->all() as $item) {
-            $categories[$item['id']] = $item['name'];
-            $categoriesName[$item['name']] = $item['name'];
+            $categories[$item['id']] = $item[$loc];
+            $categoriesName[$item[$loc]] = $item[$loc];
         }
 
         return $this->render('index', [
@@ -54,6 +64,7 @@ class ProductsController extends Controller
             'dataProvider' => $dataProvider,
             'categories' => $categories,
             'categoriesName' => $categoriesName,
+            'loc' => $loc,
         ]);
     }
 
@@ -79,9 +90,21 @@ class ProductsController extends Controller
         $modelDescription = new Description();
         $request = Yii::$app->request->post('Products');
 
+        $language = \Yii::$app->language;
+        $loc = '';
+        if ($language == 'uk') {
+            $loc = 'ukr';
+        } else if ($language == 'ru') {
+            $loc = 'rus';
+        } else if ($language == 'en') {
+            $loc = 'eng';
+        }
+
         $categories = [];
+        $categoriesName = [];
         foreach (Category::find()->asArray()->indexBy('id')->all() as $item) {
-            $categories[$item['id']] = $item['name'];
+            $categories[$item['id']] = $item[$loc];
+            $categoriesName[$item[$loc]] = $item[$loc];
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -123,9 +146,21 @@ class ProductsController extends Controller
             $modelDescription = new Description();
         }
 
+        $language = \Yii::$app->language;
+        $loc = '';
+        if ($language == 'uk') {
+            $loc = 'ukr';
+        } else if ($language == 'ru') {
+            $loc = 'rus';
+        } else if ($language == 'en') {
+            $loc = 'eng';
+        }
+
         $categories = [];
+        $categoriesName = [];
         foreach (Category::find()->asArray()->indexBy('id')->all() as $item) {
-            $categories[$item['id']] = $item['name'];
+            $categories[$item['id']] = $item[$loc];
+            $categoriesName[$item[$loc]] = $item[$loc];
         }
 
         $images = $uploadModel->getProductImages($id);

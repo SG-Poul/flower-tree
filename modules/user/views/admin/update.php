@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\user\models\UserDB */
 
-$this->title = 'Update User Db: ' . $model->id;
+$this->title = $model->username;
 ?>
 <div class="user-db-update">
 

@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\product\models\Products */
 
-$this->title = 'Add new product';
+$this->title = \Yii::t('product', 'Add');
 ?>
 <div class="products-create">
 

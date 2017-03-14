@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\user\models\UserDBSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Users';
+$this->title = \Yii::t('user', 'Users');
 
 ?>
 <div class="user-db-index">
@@ -21,26 +21,28 @@ $this->title = 'Users';
         'columns' => [
 
             'id',
-            'username',
-//            'auth_key',
-//            'password_hash',
-//            'password_reset_token',
-             'email:email',
-//             [
-//                 'attribute' => 'status',
-//                 'value' => function($model) {
-//                     return $model->status == 0 ? 'Inactive' : 'Active';
-//                 },
-//                 'filter' => [
-//                     0 => 'Inactive',
-//                     10 => 'Active'
-//                 ]
-//             ],
-             'created_at:date',
-             'fullname',
-             'address:ntext',
-             'phone',
-
+            [
+                'label' => \Yii::t('user', 'username'),
+                'attribute' => 'username',
+            ],
+            [
+                'label' => \Yii::t('user', 'email'),
+                'attribute' => 'email',
+                'format' => 'email'
+            ],
+            [
+                'label' => \Yii::t('user', 'full name'),
+                'attribute' => 'fullname',
+            ],
+            [
+                'label' => \Yii::t('user', 'address'),
+                'attribute' => 'address',
+                'format' => 'ntext'
+            ],
+            [
+                'label' => \Yii::t('user', 'phone'),
+                'attribute' => 'phone',
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

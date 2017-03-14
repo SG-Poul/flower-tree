@@ -14,8 +14,8 @@ Yii::setAlias('@products', '/product/products');
 <div class="category-index">
 
     <p>
-        <?= Html::a('Add new Category', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Edit products', ['@products'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(\Yii::t('product', 'Add new Category'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(\Yii::t('product', 'Edit products'), ['@products'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,12 +24,28 @@ Yii::setAlias('@products', '/product/products');
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'name',
-            'ukr',
-            'rus',
-            'eng',
+            [
+                'label' => \Yii::t('product', 'Name'),
+                'attribute' => 'name',
+            ],
+            [
+                'label' => \Yii::t('product', 'Name in Ukrainian'),
+                'attribute' => 'ukr',
+            ],
+            [
+                'label' => \Yii::t('product', 'Name in Russian'),
+                'attribute' => 'rus',
+            ],
+            [
+                'label' => \Yii::t('product', 'Name in English'),
+                'attribute' => 'eng',
+            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+
+            [
+                    'class' => 'yii\grid\ActionColumn',
+                    'template' => '{update} {delete}',
+            ],
         ],
     ]); ?>
 </div>

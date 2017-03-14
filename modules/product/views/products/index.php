@@ -10,11 +10,23 @@ use yii\helpers\Url;
 
 $this->title = 'Products';
 Yii::setAlias('@category', '/product/category');
+
+$language = \Yii::$app->language;
+if ($language == 'uk') {
+    $categoryNameLoc = 'categoryUkr';
+    $productNameLoc = 'descriptionUkr_Name';
+} else if ($language == 'ru') {
+    $categoryName = 'categoryRus';
+    $productNameLoc = 'descriptionRus_Name';
+} else if ($language == 'en') {
+    $categoryName = 'categoryEng';
+    $productNameLoc = 'descriptionEng_Name';
+}
 ?>
 <div class="products-index">
     <div class="form-group">
-        <?= Html::a('Add new Products', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Edit categories', ['@category'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(\Yii::t('product', 'Add new Products'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(\Yii::t('product', 'Edit categories'), ['@category'], ['class' => 'btn btn-success']) ?>
     </div>
 
     <p>
@@ -26,19 +38,25 @@ Yii::setAlias('@category', '/product/category');
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
-                'label' => 'Photo',
+                'label' => \Yii::t('product', 'Photo'),
                 'attribute' => 'mainPhoto',
                 'format' => 'raw',
                 'contentOptions' => ['style' => 'max-width: 100px;']
             ],
-            'name',
+            [
+                'label' => \Yii::t('product', 'Name'),
+                'attribute' => $productNameLoc,
+            ],
             [
                 'label' => 'ID',
                 'attribute' => 'id',
                 'format' => 'raw',
                 'contentOptions' => ['style' => 'max-width: 30px;']
             ],
-            'categoryName',
+            [
+                'label' => \Yii::t('product', 'Category name'),
+                'attribute' => 'categoryName',
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

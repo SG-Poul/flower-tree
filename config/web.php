@@ -93,6 +93,10 @@ $config = [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@app/modules/user/messages',
                 ],
+                'product' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/modules/product/messages',
+                ],
             ],
         ],
         'cart' => [

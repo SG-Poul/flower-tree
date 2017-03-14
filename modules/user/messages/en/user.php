@@ -43,4 +43,6 @@ return [
     'Save'                                                        => 'Save',
     'Please choose your new password:'                            => 'Please choose your new password:',
     'Create account'                                              => 'Create account',
+    'Users'                                                       => 'Users',
+
 ];

@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\product\models\Products */
 
-$this->title = 'Update: ' . $model->name . ' (id: ' . $model->id . ')';
+$this->title = \Yii::t('product', 'Update');
 ?>
 <div class="products-update">
 

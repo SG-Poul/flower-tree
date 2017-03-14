@@ -57,20 +57,15 @@ class Products extends \yii\db\ActiveRecord implements CartPositionInterface
             'descriptionEng_Name' => 'Eng Name',
             'categoryId' => 'Category ID',
             'categoryName' => 'Category',
+            'categoryUkr' => 'ukr',
+            'categoryRus' => 'rus',
+            'categoryEng' => 'eng',
             'descriptionUkr_Description' => 'Ukr Description',
             'descriptionRus_Description' => 'Rus Description',
             'descriptionEng_Description' => 'Eng Description',
             'price' => 'Price',
         ];
     }
-
-//    public function getCartPosition()
-//    {
-//        return \Yii::createObject([
-//            'class' => 'app\modules\Ordermodels\ProductCartPosition',
-//            'id' => $this->id,
-//        ]);
-//    }
 
     public function getPrice()
     {
@@ -136,6 +131,21 @@ class Products extends \yii\db\ActiveRecord implements CartPositionInterface
     public function getCategoryName()
     {
         return $this->category->name;
+    }
+
+    public function getCategoryUkr()
+    {
+        return $this->category->ukr;
+    }
+
+    public function getCategoryRus()
+    {
+        return $this->category->rus;
+    }
+
+    public function getCategoryEng()
+    {
+        return $this->category->eng;
     }
 
     public function getMainPhoto()

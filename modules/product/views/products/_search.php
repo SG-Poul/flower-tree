@@ -20,11 +20,11 @@ use yii\widgets\ActiveForm;
         <table class="table">
             <tr>
                 <td><?= $form->field($model, 'id') ?></td>
-                <td><?= $form->field($model, 'name') ?></td>
-                <td><?= $form->field($model, 'categoryId')->dropDownList($categories,['prompt' =>'please select']) ?></td>
+                <td><?= $form->field($model, 'name')->label(\Yii::t('product', 'Name')) ?></td>
+                <td><?= $form->field($model, 'categoryId')->dropDownList($categories,['prompt' =>\Yii::t('product', 'Please select')])->label(\Yii::t('product', 'Category name')) ?></td>
             </tr>
         </table>
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary btn-block']) ?>
+        <?= Html::submitButton(\Yii::t('product', 'Search'), ['class' => 'btn btn-primary btn-block']) ?>
 
     </div>
     <div class="form-group">

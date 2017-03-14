@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\product\models\Category */
 
-$this->title = 'Create Category';
+$this->title = \Yii::t('product', 'Add');
 ?>
 <div class="category-create">
 
